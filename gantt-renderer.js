@@ -133,7 +133,13 @@ var GanttRenderer = (function () {
     hdr.className = 'gt-hdr';
     hdr.style.gridTemplateColumns = gridCols;
     hdr.innerHTML = '<span></span>';
-    for (var w = 1; w <= config.weeks; w++) hdr.innerHTML += '<span>W' + w + '</span>';
+    for (var w = 1; w <= config.weeks; w++) {
+      if (config.weeks > 30 && w % 3 !== 1) {
+        hdr.innerHTML += '<span></span>';
+      } else {
+        hdr.innerHTML += '<span>W' + w + '</span>';
+      }
+    }
     wrap.appendChild(hdr);
 
     /* Blocker rows */
