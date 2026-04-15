@@ -1,0 +1,1190 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>远景能源 — 全球 IaaS 基础设施岗位能力与痛点加速提升计划</title>
+<link rel="stylesheet" href="style.css">
+<style>
+/* ── Cover ── */
+.cover{background:linear-gradient(135deg,#1a1a2e 0%,#16213e 50%,#0f3460 100%);color:#fff;border-radius:12px;padding:3rem 3.5rem;margin-bottom:2rem;box-shadow:0 4px 24px rgba(0,0,0,.15);position:relative;overflow:hidden}
+.cover::before{content:'';position:absolute;top:-40%;right:-20%;width:500px;height:500px;background:radial-gradient(circle,rgba(5,150,105,.15) 0%,transparent 70%);pointer-events:none}
+.cover::after{content:'';position:absolute;bottom:-30%;left:-10%;width:400px;height:400px;background:radial-gradient(circle,rgba(37,99,235,.1) 0%,transparent 70%);pointer-events:none}
+.cover h1{font-size:2rem;margin-bottom:.3rem;position:relative;z-index:1;color:#fff}
+.cover .cover-sub{font-size:1.1rem;color:#fff;margin-bottom:1.5rem;position:relative;z-index:1}
+.cover .cover-meta{display:flex;gap:2rem;flex-wrap:wrap;font-size:.82rem;color:#fff;position:relative;z-index:1}
+.cover .cover-meta span{display:flex;align-items:center;gap:.4rem}
+
+/* ── Capability Grid ── */
+.cap-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+a.cap-card{text-decoration:none;color:inherit;display:block}
+.cap-card{background:#fff;border-radius:10px;padding:1.2rem;box-shadow:0 2px 12px rgba(0,0,0,.06);border-top:3px solid var(--border);transition:transform .12s,box-shadow .12s;cursor:pointer}
+.cap-card:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.1)}
+.cap-card .cap-link{display:inline-block;margin-top:.5rem;font-size:.7rem;font-weight:600;color:#2563eb;opacity:.6;transition:opacity .15s}
+.cap-card:hover .cap-link{opacity:1}
+.cap-card .cap-num{font-size:.65rem;font-weight:700;letter-spacing:.1em;margin-bottom:.4rem}
+.cap-card b{display:block;font-size:.92rem;color:#1e293b;margin-bottom:.4rem}
+.cap-card span{font-size:.74rem;color:#475569;line-height:1.5}
+.cap-card ul{margin:.5rem 0 0;padding-left:1.2rem;font-size:.72rem;color:#64748b;line-height:1.8}
+
+/* ── Pain Point Cards ── */
+.pain-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem}
+.pain-card{background:#fff;border-radius:10px;box-shadow:0 2px 12px rgba(0,0,0,.06);padding:1rem 1.2rem;border-left:4px solid #e2e8f0;transition:transform .12s,box-shadow .12s}
+.pain-card:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.1)}
+.pain-card.s0{border-left-color:#dc2626}
+.pain-card.s1{border-left-color:#d97706}
+.pain-card.s2{border-left-color:#2563eb}
+.pain-card.s3{border-left-color:#64748b}
+.pain-card .pain-hdr{display:flex;align-items:center;gap:.5rem;margin-bottom:.4rem}
+.pain-card .pain-hdr b{font-size:.88rem;color:#1e293b}
+.pain-card .pain-desc{font-size:.74rem;color:#475569;line-height:1.5}
+.pain-card .pain-impact{margin-top:.5rem;padding-top:.4rem;border-top:1px solid #e2e8f0;font-size:.7rem;color:#94a3b8}
+.pain-card .pain-impact b{font-size:.7rem;color:#64748b}
+
+/* ── Severity Badge ── */
+.sev{display:inline-block;padding:2px 8px;border-radius:4px;font-size:.68rem;font-weight:700;color:#fff}
+.sev-s0{background:#dc2626}
+.sev-s1{background:#d97706}
+.sev-s2{background:#2563eb}
+.sev-s3{background:#64748b}
+
+/* ── Gantt Timeline (52 weeks) ── */
+.gt{background:#f8fafc;border-radius:12px;padding:1.5rem 2rem;box-shadow:0 2px 12px rgba(0,0,0,.06);overflow-x:auto;margin:1.5rem 0}
+.gt h3{margin:0 0 .2rem;font-size:1.05rem}
+.gt>p{font-size:.78rem;color:#64748b;margin:0 0 1rem}
+.gt-wrap{min-width:3000px;position:relative}
+.gt-cutover{position:absolute;right:0;top:0;bottom:0;width:10px;background:transparent;cursor:col-resize;z-index:10;box-sizing:content-box}
+.gt-cutover svg{position:absolute;right:-4px;top:0;width:6px;height:100%;overflow:visible;filter:drop-shadow(2px 2px 3px rgba(0,0,0,.25))}
+.gt-cutover .cut-halo{stroke:#fff;stroke-width:5}
+.gt-cutover .cut-line{stroke:#fde68a;stroke-width:2;stroke-dasharray:6,4;opacity:.7;transition:stroke .15s,opacity .15s}
+.gt-cutover:hover .cut-line{stroke:#fcd34d;opacity:.9}
+.gt-cutover.cut-drag .cut-line{stroke:#fcd34d;stroke-dasharray:none;opacity:.9}
+.gt-cutover .cut-dot{position:absolute;right:0;bottom:0;width:12px;height:12px;border-radius:50%;background:#fff;box-shadow:2px 2px 3px rgba(0,0,0,.25);transform:translate(7px,6px)}
+.gt-cutover:hover .cut-dot{background:#fff}
+.gt-cutover span{position:absolute;bottom:100%;right:0;transform:translateX(calc(50%));margin-bottom:2px;font-size:.58rem;font-weight:700;color:#dc2626;white-space:nowrap;letter-spacing:.04em;background:linear-gradient(135deg,#fef3c7,#fde68a);padding:2px 8px;border-radius:4px}
+/* Header row — dynamic columns set by JS */
+.gt-hdr{display:grid;gap:0;margin-bottom:.15rem}
+.gt-hdr span{font-size:.6rem;font-weight:700;color:#94a3b8;text-align:center;padding:.25rem 0;letter-spacing:.04em}
+.gt-hdr span:first-child{text-align:left;color:#475569}
+/* Chain rows — dynamic columns set by JS */
+.gt-row{display:grid;gap:0;margin-bottom:3px;align-items:center;min-height:30px}
+.gt-label{font-size:.68rem;font-weight:700;line-height:1.2;padding-right:.4rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.gt-label small{display:block;font-weight:400;font-size:.58rem;opacity:.7;margin-top:1px}
+/* Segment base */
+.gt-seg{border-radius:4px;padding:2px 4px;font-size:.55rem;font-weight:600;text-align:center;line-height:1.4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-height:30px;display:flex;align-items:center;justify-content:center}
+.gt-act{color:#fff}
+.gt-ext{background-image:repeating-conic-gradient(rgba(255,255,255,.35) 0% 25%,transparent 0% 50%)!important;background-size:5px 5px!important;color:#fff;font-style:italic}
+.gt-blk{border:2px dashed;background:transparent!important;font-style:italic;font-weight:500;font-size:.52rem}
+.gt-done{background:#fff!important;border:2px solid;font-weight:700;font-size:.55rem}
+.gt-crit{background:#d97706 repeating-linear-gradient(0deg,rgba(255,255,255,.22) 0,rgba(255,255,255,.22) 2.5px,transparent 2.5px,transparent 5px)!important;color:#fff!important;font-weight:700;font-size:.52rem}
+/* Row colors — 10 distinct */
+.gc-1 .gt-act,.gc-1 .gt-ext{background-color:#dc2626}.gc-1 .gt-blk{border-color:#dc2626;color:#dc2626}.gc-1 .gt-done{border-color:#dc2626;color:#dc2626}
+.gc-2 .gt-act,.gc-2 .gt-ext{background-color:#d97706}.gc-2 .gt-blk{border-color:#d97706;color:#d97706}.gc-2 .gt-done{border-color:#d97706;color:#d97706}
+.gc-3 .gt-act,.gc-3 .gt-ext{background-color:#be185d}.gc-3 .gt-blk{border-color:#be185d;color:#be185d}.gc-3 .gt-done{border-color:#be185d;color:#be185d}
+.gc-4 .gt-act,.gc-4 .gt-ext{background-color:#2563eb}.gc-4 .gt-blk{border-color:#2563eb;color:#2563eb}.gc-4 .gt-done{border-color:#2563eb;color:#2563eb}
+.gc-5 .gt-act,.gc-5 .gt-ext{background-color:#059669}.gc-5 .gt-blk{border-color:#059669;color:#059669}.gc-5 .gt-done{border-color:#059669;color:#059669}
+.gc-6 .gt-act,.gc-6 .gt-ext{background-color:#7c3aed}.gc-6 .gt-blk{border-color:#7c3aed;color:#7c3aed}.gc-6 .gt-done{border-color:#7c3aed;color:#7c3aed}
+.gc-7 .gt-act,.gc-7 .gt-ext{background-color:#0891b2}.gc-7 .gt-blk{border-color:#0891b2;color:#0891b2}.gc-7 .gt-done{border-color:#0891b2;color:#0891b2}
+.gc-8 .gt-act,.gc-8 .gt-ext{background-color:#64748b}.gc-8 .gt-blk{border-color:#64748b;color:#64748b}.gc-8 .gt-done{border-color:#64748b;color:#64748b}
+.gc-9 .gt-act,.gc-9 .gt-ext{background-color:#f59e0b}.gc-9 .gt-blk{border-color:#f59e0b;color:#f59e0b}.gc-9 .gt-done{border-color:#f59e0b;color:#f59e0b}
+.gc-10 .gt-act,.gc-10 .gt-ext{background-color:#6b7280}.gc-10 .gt-blk{border-color:#6b7280;color:#6b7280}.gc-10 .gt-done{border-color:#6b7280;color:#6b7280}
+/* SVG overlay */
+.g2-svg{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:5;overflow:visible;filter:drop-shadow(2px 2px 3px rgba(0,0,0,.25))}
+.g2-hl{box-shadow:0 0 0 2px rgba(217,119,6,.5)!important}
+/* Gantt legend */
+.gt-legend{display:flex;gap:1.2rem;flex-wrap:wrap;margin-top:.8rem;padding-top:.6rem;border-top:1px solid #e2e8f0}
+.gt-legend span{font-size:.68rem;color:#475569;display:flex;align-items:center;gap:4px}
+.gt-legend i{display:inline-block;width:28px;height:12px;border-radius:3px;font-style:normal}
+.gt-legend i.leg-act{background:#2563eb}
+.gt-legend i.leg-ext{background:#d97706;background-image:repeating-conic-gradient(rgba(255,255,255,.35) 0% 25%,transparent 0% 50%);background-size:5px 5px}
+.gt-legend i.leg-blk{background:transparent;border:2px dashed #7c3aed}
+.gt-legend i.leg-crit{background:#dc2626;background-image:repeating-linear-gradient(0deg,rgba(255,255,255,.22) 0,rgba(255,255,255,.22) 2.5px,transparent 2.5px,transparent 5px)}
+.gt-legend i.leg-done{background:#fff;border:2px solid #059669}
+.gt-notes{margin-top:1rem;padding-top:.8rem;border-top:1px solid #e2e8f0}
+.gt-notes li{font-size:.72rem;color:#475569;margin-bottom:.35rem;line-height:1.5}
+.gt-notes li b{color:#1e293b}
+.gt-notes li em{font-style:normal;background:#fef2f2;color:#dc2626;padding:.1rem .4rem;border-radius:3px;font-size:.66rem;font-weight:600}
+
+/* ── Phase Cards ── */
+.phase-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+.phase-card{background:#fff;border-radius:10px;padding:1.2rem;box-shadow:0 2px 12px rgba(0,0,0,.06);position:relative;overflow:hidden}
+.phase-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.phase-card.p1::before{background:linear-gradient(90deg,#dc2626,#d97706)}
+.phase-card.p2::before{background:linear-gradient(90deg,#d97706,#2563eb)}
+.phase-card.p3::before{background:linear-gradient(90deg,#2563eb,#059669)}
+.phase-card.p4::before{background:linear-gradient(90deg,#059669,#7c3aed)}
+.phase-card .phase-tag{font-size:.62rem;font-weight:700;letter-spacing:.1em;margin-bottom:.3rem}
+.phase-card b{display:block;font-size:.9rem;color:#1e293b;margin-bottom:.4rem}
+.phase-card ul{padding-left:1.2rem;font-size:.74rem;color:#475569;line-height:1.8;margin:0}
+.phase-card li b{font-size:.74rem;display:inline}
+
+/* ── Risk Table ── */
+.risk-wrap{background:#f8fafc;border-radius:12px;padding:1.5rem 2rem;box-shadow:0 2px 12px rgba(0,0,0,.06);margin:1.5rem 0}
+.risk-wrap h3{margin:0 0 .2rem;font-size:1.05rem}
+.risk-wrap>p{font-size:.78rem;color:#64748b;margin:0 0 1rem}
+
+/* ── Side Nav ── */
+.snav-btn{position:fixed;left:0;top:50%;transform:translateY(-50%);z-index:200;width:28px;height:54px;background:var(--accent);color:#fff;border:none;border-radius:0 6px 6px 0;cursor:pointer;font-size:.85rem;line-height:1;display:flex;align-items:center;justify-content:center;box-shadow:1px 2px 8px rgba(0,0,0,.15);opacity:.45;transition:opacity .2s}
+.snav-btn:hover{opacity:.85}
+.snav-btn.open{opacity:.9}
+.snav-panel{position:fixed;left:0;top:0;bottom:0;width:220px;background:#fff;box-shadow:3px 0 24px rgba(0,0,0,.12);z-index:199;transform:translateX(-100%);transition:transform .25s ease;display:flex;flex-direction:column;padding:1.5rem 0}
+.snav-panel.open{transform:translateX(0)}
+.snav-panel .snav-title{font-size:.7rem;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.1em;padding:0 1.2rem .6rem;border-bottom:1px solid var(--border)}
+.snav-panel a{display:flex;align-items:center;gap:.5rem;padding:.55rem 1.2rem;font-size:.82rem;font-weight:500;color:var(--text2);text-decoration:none;transition:background .12s,color .12s;border-left:3px solid transparent}
+.snav-panel a:hover{background:#f1f5f9;color:var(--accent)}
+.snav-panel a .snav-num{font-size:.65rem;font-weight:700;color:var(--text3);min-width:14px}
+.snav-backdrop{position:fixed;inset:0;z-index:198;background:rgba(0,0,0,.08);opacity:0;pointer-events:none;transition:opacity .25s}
+.snav-backdrop.open{opacity:1;pointer-events:auto}
+
+/* ── Dependency Diagram ── */
+.dep-wrap{background:#f8fafc;border-radius:12px;padding:1.5rem 2rem;box-shadow:0 2px 12px rgba(0,0,0,.06);margin:1.5rem 0}
+.dep-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+.dep-item{background:#fff;border-radius:8px;padding:1rem;box-shadow:0 1px 4px rgba(0,0,0,.05);font-size:.78rem;line-height:1.6}
+.dep-item b{color:#1e293b;display:block;margin-bottom:.3rem;font-size:.82rem}
+.dep-item .dep-arrow{color:#d97706;font-weight:700;font-size:.82rem}
+
+/* ── Network Architecture ── */
+.net-arch{background:#f8fafc;border-radius:12px;padding:1.5rem 2rem;box-shadow:0 2px 12px rgba(0,0,0,.06);margin:1.5rem 0;overflow:hidden}
+.net-arch h3{margin:0 0 .2rem;font-size:1.05rem}
+.net-arch>p{font-size:.78rem;color:#64748b;margin:0 0 1rem}
+.net-svg-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:1rem 0}
+.net-svg-wrap svg{display:block;min-width:1000px;height:auto}
+.net-detail-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:1.5rem}
+.net-rcard{background:#fff;border-radius:10px;padding:1rem;box-shadow:0 2px 8px rgba(0,0,0,.05);border-top:3px solid #e2e8f0}
+.net-rcard.rc-cn{border-top-color:#dc2626}.net-rcard.rc-eu{border-top-color:#2563eb}
+.net-rcard.rc-ap{border-top-color:#059669}.net-rcard.rc-us{border-top-color:#7c3aed}
+.net-rcard b{display:block;font-size:.88rem;color:#1e293b;margin-bottom:.5rem}
+.net-rcard ul{margin:0;padding-left:1.1rem;font-size:.72rem;color:#475569;line-height:1.8}
+.net-rcard li b{display:inline;font-size:.72rem}
+.net-zone-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1rem}
+.net-zone{background:#fff;border-radius:8px;padding:.8rem 1rem;box-shadow:0 1px 4px rgba(0,0,0,.05);border-left:4px solid #e2e8f0;font-size:.74rem}
+.net-zone b{display:block;font-size:.82rem;color:#1e293b;margin-bottom:.3rem}
+.net-zone p{color:#475569;line-height:1.5;margin:0}
+.net-zone.nz-ot{border-left-color:#d97706}.net-zone.nz-dmz{border-left-color:#dc2626}
+.net-zone.nz-it{border-left-color:#2563eb}.net-zone.nz-cloud{border-left-color:#7c3aed}
+.net-zone.nz-iot{border-left-color:#16a34a}.net-zone.nz-mgmt{border-left-color:#64748b}
+.net-flow{display:flex;align-items:center;gap:.3rem;flex-wrap:wrap;font-size:.72rem}
+.net-flow span.nf{padding:4px 10px;border-radius:4px;font-weight:600}
+/* ── IT/OT Integration ── */
+.itot-phases{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin:1rem 0}
+.itot-phase{background:#fff;border-radius:10px;padding:1.2rem;box-shadow:0 2px 12px rgba(0,0,0,.06);border-top:3px solid #e2e8f0}
+.itot-phase .ip-tag{font-size:.62rem;font-weight:700;letter-spacing:.1em;margin-bottom:.3rem}
+.itot-phase b{display:block;font-size:.9rem;color:#1e293b;margin-bottom:.4rem}
+.itot-phase p{font-size:.74rem;color:#475569;line-height:1.6;margin:0}
+.itot-phase ul{margin:.5rem 0 0;padding-left:1.1rem;font-size:.72rem;color:#64748b;line-height:1.8}
+.itot-drivers{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin:1rem 0}
+.itot-driver{background:#fff;border-radius:10px;padding:1rem;box-shadow:0 2px 12px rgba(0,0,0,.06);border-left:3px solid #2563eb}
+.itot-driver b{display:block;font-size:.85rem;color:#1e293b;margin-bottom:.3rem}
+.itot-driver p{font-size:.72rem;color:#475569;line-height:1.5;margin:0}
+.itot-driver .itot-kpi{margin-top:.4rem;font-size:.68rem;color:#d97706;font-weight:600}
+
+@media(max-width:900px){
+  .cap-grid,.net-detail-grid,.net-zone-grid,.itot-drivers{grid-template-columns:repeat(2,1fr)}
+  .phase-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:700px){
+  body{padding:1rem}
+  .cap-grid,.pain-grid,.phase-grid,.net-detail-grid,.net-zone-grid,.itot-drivers,.itot-phases{grid-template-columns:1fr}
+  .cover{padding:2rem 1.5rem}
+  .cover h1{font-size:1.4rem}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== Cover ===== -->
+<div class="cover">
+  <h1>远景能源 — 全球 IaaS 基础设施</h1>
+  <div class="cover-sub">岗位能力评估与痛点加速提升计划</div>
+  <div class="cover-meta">
+    <span>汇报对象：CIO</span>
+    <span>岗位：全球 IaaS 基础设施负责人</span>
+    <span>计划周期：52 周（12 个月）</span>
+    <span>覆盖区域：中国 / 欧洲 / 东南亚 / 日本 / 北美</span>
+  </div>
+</div>
+
+<!-- ===== Side Nav ===== -->
+<button class="snav-btn" id="snavBtn" aria-label="导航">&#9776;</button>
+<div class="snav-backdrop" id="snavBg"></div>
+<nav class="snav-panel" id="snavPanel">
+  <div class="snav-title">章节导航</div>
+  <a href="#sec-role"><span class="snav-num">1</span>岗位定位</a>
+  <a href="#sec-net"><span class="snav-num">2</span>全球网络架构</a>
+  <a href="#sec-itot"><span class="snav-num">3</span>IT/OT 融合</a>
+  <a href="#sec-cap"><span class="snav-num">4</span>核心能力域</a>
+  <a href="#sec-pain"><span class="snav-num">5</span>痛点诊断</a>
+  <a href="#sec-dep"><span class="snav-num">6</span>依赖关系</a>
+  <a href="#sec-gantt"><span class="snav-num">7</span>加速提升计划</a>
+  <a href="#sec-phase"><span class="snav-num">8</span>分阶段交付</a>
+  <a href="#sec-risk"><span class="snav-num">9</span>风险管控</a>
+  <a href="#sec-next"><span class="snav-num">10</span>即刻行动</a>
+</nav>
+
+<!-- ===== 1. Role Overview ===== -->
+<h2 id="sec-role">1. 岗位定位 — 全球 IaaS 基础设施负责人</h2>
+<div class="card">
+<table>
+  <tr><th>岗位名称</th><td>全球 IaaS 基础设施负责人（Head of Global IaaS Infrastructure）</td></tr>
+  <tr><th>汇报线</th><td>CIO / CTO</td></tr>
+  <tr><th>管辖范围</th><td>计算、存储、网络、安全基线、灾备、监控 — 覆盖中国大陆、欧洲（丹麦/德国）、东南亚（新加坡）、日本、北美</td></tr>
+  <tr><th>核心使命</th><td>为远景能源 EnOS 物联网平台及全球业务系统提供<b>安全、合规、高可用、成本可控</b>的基础设施底座</td></tr>
+  <tr><th>关键挑战</th><td>多国法规合规、多云异构环境（阿里云 / AWS / GCP / 私有云）、IoT 设备爆发式增长带来的弹性需求、全球运维团队能力参差不齐</td></tr>
+</table>
+</div>
+
+<!-- ===== 2. Global Network Architecture ===== -->
+<h2 id="sec-net">2. 全球网络架构总览 — 远景能源全球基础设施拓扑</h2>
+
+<div class="net-arch">
+<h3>全球网络拓扑 — 三云 · 四区域 · 多类型站点</h3>
+<p>涵盖阿里云 / AWS / GCP 三大云平台、全球四大区域枢纽、工厂 OT 网络、风电场边缘网络的端到端架构视图</p>
+<div class="net-svg-wrap">
+<svg viewBox="0 0 1200 700" xmlns="http://www.w3.org/2000/svg" style="font-family:system-ui,-apple-system,sans-serif">
+<defs>
+<linearGradient id="gA" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#ff6a00"/><stop offset="100%" stop-color="#ee0979"/></linearGradient>
+<linearGradient id="gW" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#232f3e"/><stop offset="100%" stop-color="#1a2332"/></linearGradient>
+<linearGradient id="gG" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#4285f4"/><stop offset="100%" stop-color="#1a73e8"/></linearGradient>
+<linearGradient id="gB" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#0f172a"/><stop offset="100%" stop-color="#1e293b"/></linearGradient>
+</defs>
+
+<!-- ── CLOUD TIER ── -->
+<text x="600" y="16" text-anchor="middle" font-size="10" font-weight="700" fill="#94a3b8" letter-spacing="3">CLOUD PLATFORMS — 云平台层</text>
+
+<!-- Alibaba Cloud -->
+<rect x="20" y="28" width="360" height="90" rx="8" fill="url(#gA)"/>
+<text x="200" y="50" text-anchor="middle" font-size="14" font-weight="700" fill="#fff">Alibaba Cloud 阿里云</text>
+<text x="200" y="65" text-anchor="middle" font-size="8.5" fill="rgba(255,255,255,0.65)">cn-shanghai · cn-shenzhen · cn-beijing</text>
+<text x="200" y="82" text-anchor="middle" font-size="7.5" fill="rgba(255,255,255,0.5)">ACK · ECS · RDS · OSS · SLB · CEN · SLS · ARMS</text>
+<text x="200" y="97" text-anchor="middle" font-size="7.5" fill="rgba(255,255,255,0.5)">Express Connect │ EnOS 中国区 · 企业核心应用</text>
+<rect x="30" y="103" width="72" height="11" rx="2" fill="rgba(255,255,255,0.15)"/><text x="66" y="111" text-anchor="middle" font-size="6" fill="rgba(255,255,255,0.7)" font-weight="600">主力云 ~60%</text>
+
+<!-- AWS -->
+<rect x="420" y="28" width="360" height="90" rx="8" fill="url(#gW)"/>
+<text x="600" y="50" text-anchor="middle" font-size="14" font-weight="700" fill="#ff9900">Amazon Web Services</text>
+<text x="600" y="65" text-anchor="middle" font-size="8.5" fill="rgba(255,255,255,0.65)">ap-southeast-1 · eu-central-1 · us-west-2</text>
+<text x="600" y="82" text-anchor="middle" font-size="7.5" fill="rgba(255,255,255,0.5)">EKS · EC2 · RDS · S3 · ALB · Transit Gateway · CloudWatch</text>
+<text x="600" y="97" text-anchor="middle" font-size="7.5" fill="rgba(255,255,255,0.5)">Direct Connect │ EnOS 海外 · 全球业务系统</text>
+<rect x="430" y="103" width="72" height="11" rx="2" fill="rgba(255,255,255,0.1)"/><text x="466" y="111" text-anchor="middle" font-size="6" fill="rgba(255,255,255,0.6)" font-weight="600">海外主力 ~30%</text>
+
+<!-- GCP -->
+<rect x="820" y="28" width="360" height="90" rx="8" fill="url(#gG)"/>
+<text x="1000" y="50" text-anchor="middle" font-size="14" font-weight="700" fill="#fff">Google Cloud Platform</text>
+<text x="1000" y="65" text-anchor="middle" font-size="8.5" fill="rgba(255,255,255,0.65)">us-central1 · europe-west1 · asia-east1</text>
+<text x="1000" y="82" text-anchor="middle" font-size="7.5" fill="rgba(255,255,255,0.5)">GKE · BigQuery · GCS · Vertex AI · Looker · Pub/Sub</text>
+<text x="1000" y="97" text-anchor="middle" font-size="7.5" fill="rgba(255,255,255,0.5)">Cloud Interconnect │ 大数据分析 · AI/ML · BI</text>
+<rect x="830" y="103" width="72" height="11" rx="2" fill="rgba(255,255,255,0.15)"/><text x="866" y="111" text-anchor="middle" font-size="6" fill="rgba(255,255,255,0.7)" font-weight="600">数据分析 ~10%</text>
+
+<!-- ── INTERCONNECT LINES ── -->
+<line x1="200" y1="118" x2="200" y2="150" stroke="#ff6a00" stroke-width="2"/>
+<text x="130" y="138" font-size="7" fill="#ff6a00" font-weight="600">Express Connect 专线</text>
+<line x1="600" y1="118" x2="600" y2="150" stroke="#ff9900" stroke-width="2"/>
+<text x="530" y="138" font-size="7" fill="#d97706" font-weight="600">Direct Connect 专线</text>
+<line x1="1000" y1="118" x2="1000" y2="150" stroke="#4285f4" stroke-width="2"/>
+<text x="915" y="138" font-size="7" fill="#4285f4" font-weight="600">Cloud Interconnect 专线</text>
+
+<!-- ── GLOBAL BACKBONE ── -->
+<rect x="20" y="150" width="1160" height="46" rx="6" fill="url(#gB)"/>
+<text x="600" y="170" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">Global SD-WAN / MPLS Backbone — 全球骨干网络</text>
+<text x="600" y="185" text-anchor="middle" font-size="8" fill="rgba(255,255,255,0.5)">China Telecom 国际专线 · PCCW Global · Telia Carrier · Equinix Fabric │ IPSec VPN Overlay │ 跨境合规通道 CN↔HK↔SG/EU</text>
+
+<!-- ── GFW BOUNDARY ── -->
+<line x1="298" y1="150" x2="298" y2="600" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="8,4" opacity="0.35"/>
+<rect x="270" y="390" width="56" height="20" rx="4" fill="#fef2f2" stroke="#fecaca" stroke-width="0.5"/>
+<text x="298" y="403" text-anchor="middle" font-size="7.5" font-weight="700" fill="#dc2626">跨境边界</text>
+
+<!-- Route latency labels below backbone -->
+<text x="155" y="207" text-anchor="middle" font-size="6.5" fill="#94a3b8">CN 国内 &lt;10ms</text>
+<text x="370" y="207" text-anchor="middle" font-size="6.5" fill="#94a3b8">CN↔EU ~200ms</text>
+<text x="590" y="207" text-anchor="middle" font-size="6.5" fill="#94a3b8">SG↔EU ~150ms</text>
+<text x="880" y="207" text-anchor="middle" font-size="6.5" fill="#94a3b8">SG↔US ~180ms</text>
+
+<!-- ── BACKBONE → REGION LINES ── -->
+<line x1="155" y1="196" x2="155" y2="218" stroke="#64748b" stroke-width="1.5"/>
+<line x1="445" y1="196" x2="445" y2="218" stroke="#64748b" stroke-width="1.5"/>
+<line x1="735" y1="196" x2="735" y2="218" stroke="#64748b" stroke-width="1.5"/>
+<line x1="1025" y1="196" x2="1025" y2="218" stroke="#64748b" stroke-width="1.5"/>
+
+<!-- ── REGION HEADERS ── -->
+<rect x="20" y="218" width="270" height="26" rx="5" fill="#dc2626"/>
+<text x="155" y="235" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">&#x1F1E8;&#x1F1F3; 中国区 China</text>
+<rect x="310" y="218" width="270" height="26" rx="5" fill="#2563eb"/>
+<text x="445" y="235" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">&#x1F1EA;&#x1F1FA; 欧洲区 Europe</text>
+<rect x="600" y="218" width="270" height="26" rx="5" fill="#059669"/>
+<text x="735" y="235" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">&#x1F30F; 亚太区 Asia Pacific</text>
+<rect x="890" y="218" width="270" height="26" rx="5" fill="#7c3aed"/>
+<text x="1025" y="235" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">&#x1F30E; 美洲区 Americas</text>
+
+<!-- ══════ CHINA COLUMN ══════ -->
+<g id="r-cn" transform="translate(20,0)">
+<!-- Shanghai HQ -->
+<rect x="5" y="254" width="260" height="74" rx="6" fill="#fff" stroke="#e2e8f0"/>
+<rect x="5" y="254" width="4" height="74" rx="2 0 0 2" fill="#6366f1"/>
+<text x="18" y="271" font-size="10.5" font-weight="700" fill="#1e293b">上海总部 Shanghai HQ</text>
+<text x="18" y="286" font-size="8" fill="#64748b">企业办公 LAN · 10GbE 核心 · Wi-Fi 6 全覆盖</text>
+<text x="18" y="299" font-size="8" fill="#64748b">VPN 远程接入 · 互联网双出口 (电信/联通)</text>
+<text x="18" y="312" font-size="8" fill="#64748b">视频会议 · 统一通信 UC · 500+ 员工</text>
+<rect x="199" y="259" width="58" height="14" rx="3" fill="#eef2ff"/><text x="228" y="269" text-anchor="middle" font-size="6.5" font-weight="600" fill="#6366f1">办公网络</text>
+<!-- Private DC -->
+<text x="135" y="338" text-anchor="middle" font-size="6.5" fill="#94a3b8">↕ 10G 光纤直连</text>
+<rect x="5" y="344" width="260" height="74" rx="6" fill="#fff" stroke="#e2e8f0"/>
+<rect x="5" y="344" width="4" height="74" rx="2 0 0 2" fill="#475569"/>
+<text x="18" y="361" font-size="10.5" font-weight="700" fill="#1e293b">私有数据中心 Private DC</text>
+<text x="18" y="376" font-size="8" fill="#64748b">VMware vSphere 集群 · NetApp AFF SAN 存储</text>
+<text x="18" y="389" font-size="8" fill="#64748b">Zabbix 传统监控 · 企业 DNS/DHCP/AD</text>
+<text x="18" y="402" font-size="8" fill="#64748b">SAP ERP · HR · 财务 · 邮件 · 200+ 物理服务器</text>
+<rect x="199" y="349" width="58" height="14" rx="3" fill="#f1f5f9"/><text x="228" y="359" text-anchor="middle" font-size="6.5" font-weight="600" fill="#475569">DC 网络</text>
+<!-- Smart Factory -->
+<text x="135" y="428" text-anchor="middle" font-size="6.5" fill="#94a3b8">↕ MPLS + IPSec VPN</text>
+<rect x="5" y="434" width="260" height="74" rx="6" fill="#fff" stroke="#fde68a"/>
+<rect x="5" y="434" width="4" height="74" rx="2 0 0 2" fill="#d97706"/>
+<text x="18" y="451" font-size="10.5" font-weight="700" fill="#1e293b">智能工厂 Smart Factory</text>
+<text x="18" y="466" font-size="8" fill="#64748b">江阴电池 · 博望风机 · 盐城叶片 (×3 基地)</text>
+<text x="18" y="479" font-size="8" fill="#d97706" font-weight="600">OT 隔离: Siemens PLC · WinCC SCADA · MES</text>
+<text x="18" y="492" font-size="8" fill="#64748b">IT/OT DMZ · 数据二极管 · 工业防火墙</text>
+<rect x="199" y="439" width="58" height="14" rx="3" fill="#fef3c7"/><text x="228" y="449" text-anchor="middle" font-size="6.5" font-weight="600" fill="#d97706">OT 网络</text>
+<!-- Wind Farms -->
+<text x="135" y="518" text-anchor="middle" font-size="6.5" fill="#94a3b8">↕ 4G/5G + 卫星备份</text>
+<rect x="5" y="524" width="260" height="80" rx="6" fill="#fff" stroke="#dcfce7"/>
+<rect x="5" y="524" width="4" height="80" rx="2 0 0 2" fill="#16a34a"/>
+<text x="18" y="541" font-size="10.5" font-weight="700" fill="#1e293b">风电场群 Wind Farms</text>
+<text x="18" y="556" font-size="8" fill="#64748b">江苏沿海 · 内蒙古 · 新疆 · 广东 (50+ 场站)</text>
+<text x="18" y="569" font-size="8" fill="#64748b">每场: SCADA 环网 · 边缘计算节点 · IoT 网关</text>
+<text x="18" y="582" font-size="8" fill="#64748b">回传: 4G/5G 蜂窝 + 北斗卫星备份链路</text>
+<text x="18" y="595" font-size="8" fill="#16a34a" font-weight="600">数万台风机 · 百万级数据点 · 实时遥测</text>
+<rect x="199" y="529" width="58" height="14" rx="3" fill="#dcfce7"/><text x="228" y="539" text-anchor="middle" font-size="6.5" font-weight="600" fill="#16a34a">IoT/边缘</text>
+</g>
+
+<!-- ══════ EUROPE COLUMN ══════ -->
+<g id="r-eu" transform="translate(310,0)">
+<!-- Denmark Office -->
+<rect x="5" y="254" width="260" height="74" rx="6" fill="#fff" stroke="#e2e8f0"/>
+<rect x="5" y="254" width="4" height="74" rx="2 0 0 2" fill="#6366f1"/>
+<text x="18" y="271" font-size="10.5" font-weight="700" fill="#1e293b">丹麦总部 Denmark HQ</text>
+<text x="18" y="286" font-size="8" fill="#64748b">Silkeborg · 100+ 员工 · 企业 LAN</text>
+<text x="18" y="299" font-size="8" fill="#64748b">SD-WAN 直连 Frankfurt PoP · Wi-Fi 6</text>
+<text x="18" y="312" font-size="8" fill="#64748b">GDPR 合规数据处理 · 本地互联网出口</text>
+<rect x="199" y="259" width="58" height="14" rx="3" fill="#eef2ff"/><text x="228" y="269" text-anchor="middle" font-size="6.5" font-weight="600" fill="#6366f1">办公网络</text>
+<!-- Frankfurt PoP -->
+<text x="135" y="338" text-anchor="middle" font-size="6.5" fill="#94a3b8">↕ SD-WAN · 10ms</text>
+<rect x="5" y="344" width="260" height="74" rx="6" fill="#fff" stroke="#e2e8f0"/>
+<rect x="5" y="344" width="4" height="74" rx="2 0 0 2" fill="#475569"/>
+<text x="18" y="361" font-size="10.5" font-weight="700" fill="#1e293b">Frankfurt 网络枢纽</text>
+<text x="18" y="376" font-size="8" fill="#64748b">Equinix FR5 · 运营商中立互联 (Carrier Neutral)</text>
+<text x="18" y="389" font-size="8" fill="#64748b">AWS Direct Connect · GCP Interconnect 接入</text>
+<text x="18" y="402" font-size="8" fill="#64748b">欧洲区流量汇聚 · 跨境出口至中国/亚太</text>
+<rect x="199" y="349" width="58" height="14" rx="3" fill="#f1f5f9"/><text x="228" y="359" text-anchor="middle" font-size="6.5" font-weight="600" fill="#475569">PoP 枢纽</text>
+<!-- Offshore Wind -->
+<text x="135" y="428" text-anchor="middle" font-size="6.5" fill="#94a3b8">↕ 海底光纤 + 微波备份</text>
+<rect x="5" y="434" width="260" height="74" rx="6" fill="#fff" stroke="#bfdbfe"/>
+<rect x="5" y="434" width="4" height="74" rx="2 0 0 2" fill="#0891b2"/>
+<text x="18" y="451" font-size="10.5" font-weight="700" fill="#1e293b">北海海上风电 Offshore</text>
+<text x="18" y="466" font-size="8" fill="#64748b">海底光纤至岸站 · 微波无线备份链路</text>
+<text x="18" y="479" font-size="8" fill="#0891b2" font-weight="600">海上平台边缘计算 · SCADA 隔离控制网络</text>
+<text x="18" y="492" font-size="8" fill="#64748b">恶劣海洋环境 · 高可用要求 · 远程运维</text>
+<rect x="199" y="439" width="58" height="14" rx="3" fill="#ecfeff"/><text x="228" y="449" text-anchor="middle" font-size="6.5" font-weight="600" fill="#0891b2">SCADA</text>
+<!-- Onshore Wind -->
+<text x="135" y="518" text-anchor="middle" font-size="6.5" fill="#94a3b8">↕ 光纤 + 4G</text>
+<rect x="5" y="524" width="260" height="80" rx="6" fill="#fff" stroke="#dcfce7"/>
+<rect x="5" y="524" width="4" height="80" rx="2 0 0 2" fill="#16a34a"/>
+<text x="18" y="541" font-size="10.5" font-weight="700" fill="#1e293b">陆上风电 Onshore DE/FR/UK</text>
+<text x="18" y="556" font-size="8" fill="#64748b">德国 · 法国 · 英国 · 西班牙陆上风电场</text>
+<text x="18" y="569" font-size="8" fill="#64748b">光纤接入 + 4G LTE 回传 · 本地 SCADA</text>
+<text x="18" y="582" font-size="8" fill="#64748b">边缘计算节点 · 远程运维中心对接</text>
+<text x="18" y="595" font-size="8" fill="#16a34a" font-weight="600">NIS2 合规 · GDPR 数据驻留 · 本地存储</text>
+<rect x="199" y="529" width="58" height="14" rx="3" fill="#dcfce7"/><text x="228" y="539" text-anchor="middle" font-size="6.5" font-weight="600" fill="#16a34a">IoT/边缘</text>
+</g>
+
+<!-- ══════ APAC COLUMN ══════ -->
+<g id="r-ap" transform="translate(600,0)">
+<!-- Singapore Hub -->
+<rect x="5" y="254" width="260" height="74" rx="6" fill="#fff" stroke="#e2e8f0"/>
+<rect x="5" y="254" width="4" height="74" rx="2 0 0 2" fill="#475569"/>
+<text x="18" y="271" font-size="10.5" font-weight="700" fill="#1e293b">新加坡枢纽 Singapore Hub</text>
+<text x="18" y="286" font-size="8" fill="#64748b">Equinix SG1 · 区域网络核心 · 多云接入点</text>
+<text x="18" y="299" font-size="8" fill="#64748b">AWS Direct Connect · EnOS 东南亚实例</text>
+<text x="18" y="312" font-size="8" fill="#64748b">PDPA 合规 · 60+ 员工 · 区域运维中心</text>
+<rect x="199" y="259" width="58" height="14" rx="3" fill="#f1f5f9"/><text x="228" y="269" text-anchor="middle" font-size="6.5" font-weight="600" fill="#475569">PoP 枢纽</text>
+<!-- Japan Office -->
+<text x="135" y="338" text-anchor="middle" font-size="6.5" fill="#94a3b8">↕ SD-WAN · 50ms</text>
+<rect x="5" y="344" width="260" height="74" rx="6" fill="#fff" stroke="#e2e8f0"/>
+<rect x="5" y="344" width="4" height="74" rx="2 0 0 2" fill="#6366f1"/>
+<text x="18" y="361" font-size="10.5" font-weight="700" fill="#1e293b">日本办公室 Japan Office</text>
+<text x="18" y="376" font-size="8" fill="#64748b">横滨 · 40+ 员工 · 日本风电运维中心</text>
+<text x="18" y="389" font-size="8" fill="#64748b">企业 LAN · VPN 接入 · 本地互联网出口</text>
+<text x="18" y="402" font-size="8" fill="#64748b">APPI 合规 · 日本数据驻留要求</text>
+<rect x="199" y="349" width="58" height="14" rx="3" fill="#eef2ff"/><text x="228" y="359" text-anchor="middle" font-size="6.5" font-weight="600" fill="#6366f1">办公网络</text>
+<!-- SE Asia Sites -->
+<text x="135" y="428" text-anchor="middle" font-size="6.5" fill="#94a3b8">↕ 4G + VPN</text>
+<rect x="5" y="434" width="260" height="74" rx="6" fill="#fff" stroke="#dcfce7"/>
+<rect x="5" y="434" width="4" height="74" rx="2 0 0 2" fill="#16a34a"/>
+<text x="18" y="451" font-size="10.5" font-weight="700" fill="#1e293b">东南亚站点 SE Asia Sites</text>
+<text x="18" y="466" font-size="8" fill="#64748b">越南 · 泰国 · 印尼太阳能/风电场</text>
+<text x="18" y="479" font-size="8" fill="#64748b">4G LTE 回传 · IoT 网关集群 · 边缘缓存</text>
+<text x="18" y="492" font-size="8" fill="#64748b">轻量部署 · 云原生优先 · SaaS 化运维</text>
+<rect x="199" y="439" width="58" height="14" rx="3" fill="#dcfce7"/><text x="228" y="449" text-anchor="middle" font-size="6.5" font-weight="600" fill="#16a34a">IoT/边缘</text>
+<!-- India/Australia -->
+<text x="135" y="518" text-anchor="middle" font-size="6.5" fill="#94a3b8">↕ VPN + 4G/卫星</text>
+<rect x="5" y="524" width="260" height="80" rx="6" fill="#fff" stroke="#e2e8f0" stroke-dasharray="4,2"/>
+<rect x="5" y="524" width="4" height="80" rx="2 0 0 2" fill="#94a3b8"/>
+<text x="18" y="541" font-size="10.5" font-weight="700" fill="#94a3b8">印度 · 澳大利亚 (规划中)</text>
+<text x="18" y="556" font-size="8" fill="#94a3b8">新兴市场基础设施规划 · 云原生优先</text>
+<text x="18" y="569" font-size="8" fill="#94a3b8">轻量 VPN + 4G/卫星 · SaaS 工具链</text>
+<text x="18" y="582" font-size="8" fill="#94a3b8">印度太阳能 · 澳大利亚风电 · 储能项目</text>
+<text x="18" y="595" font-size="8" fill="#94a3b8" font-style="italic">预计 2025-2026 年逐步上线</text>
+<rect x="199" y="529" width="58" height="14" rx="3" fill="#f1f5f9"/><text x="228" y="539" text-anchor="middle" font-size="6.5" font-weight="600" fill="#94a3b8">规划中</text>
+</g>
+
+<!-- ══════ AMERICAS COLUMN ══════ -->
+<g id="r-us" transform="translate(890,0)">
+<!-- Houston Office -->
+<rect x="5" y="254" width="260" height="74" rx="6" fill="#fff" stroke="#e2e8f0"/>
+<rect x="5" y="254" width="4" height="74" rx="2 0 0 2" fill="#6366f1"/>
+<text x="18" y="271" font-size="10.5" font-weight="700" fill="#1e293b">Houston 办公室 US HQ</text>
+<text x="18" y="286" font-size="8" fill="#64748b">美洲区域总部 · 80+ 员工 · 企业 LAN</text>
+<text x="18" y="299" font-size="8" fill="#64748b">SD-WAN · AWS Direct Connect (us-west-2)</text>
+<text x="18" y="312" font-size="8" fill="#64748b">US 业务运营中心 · 客户对接枢纽</text>
+<rect x="199" y="259" width="58" height="14" rx="3" fill="#eef2ff"/><text x="228" y="269" text-anchor="middle" font-size="6.5" font-weight="600" fill="#6366f1">办公网络</text>
+<!-- US Wind Farms -->
+<text x="135" y="338" text-anchor="middle" font-size="6.5" fill="#94a3b8">↕ 光纤 + 4G</text>
+<rect x="5" y="344" width="260" height="74" rx="6" fill="#fff" stroke="#dcfce7"/>
+<rect x="5" y="344" width="4" height="74" rx="2 0 0 2" fill="#16a34a"/>
+<text x="18" y="361" font-size="10.5" font-weight="700" fill="#1e293b">US 风电场 Wind Farms</text>
+<text x="18" y="376" font-size="8" fill="#64748b">德克萨斯 · 中西部 · 大平原区陆上风电</text>
+<text x="18" y="389" font-size="8" fill="#64748b">SCADA 网络 · 边缘计算节点 · IoT 网关</text>
+<text x="18" y="402" font-size="8" fill="#64748b">光纤/4G 回传 · 北美电网并网监控</text>
+<rect x="199" y="349" width="58" height="14" rx="3" fill="#dcfce7"/><text x="228" y="359" text-anchor="middle" font-size="6.5" font-weight="600" fill="#16a34a">IoT/边缘</text>
+<!-- BESS Storage -->
+<text x="135" y="428" text-anchor="middle" font-size="6.5" fill="#94a3b8">↕ 专用光纤</text>
+<rect x="5" y="434" width="260" height="74" rx="6" fill="#fff" stroke="#fde68a"/>
+<rect x="5" y="434" width="4" height="74" rx="2 0 0 2" fill="#d97706"/>
+<text x="18" y="451" font-size="10.5" font-weight="700" fill="#1e293b">储能电站 BESS</text>
+<text x="18" y="466" font-size="8" fill="#64748b">电池储能系统 · 电网并网监控</text>
+<text x="18" y="479" font-size="8" fill="#d97706" font-weight="600">实时调度控制 · BMS 电池管理系统</text>
+<text x="18" y="492" font-size="8" fill="#64748b">NERC CIP 合规 · 电力行业安全标准</text>
+<rect x="199" y="439" width="58" height="14" rx="3" fill="#fef3c7"/><text x="228" y="449" text-anchor="middle" font-size="6.5" font-weight="600" fill="#d97706">OT 网络</text>
+<!-- South America -->
+<text x="135" y="518" text-anchor="middle" font-size="6.5" fill="#94a3b8">↕ VPN + 4G</text>
+<rect x="5" y="524" width="260" height="80" rx="6" fill="#fff" stroke="#e2e8f0" stroke-dasharray="4,2"/>
+<rect x="5" y="524" width="4" height="80" rx="2 0 0 2" fill="#94a3b8"/>
+<text x="18" y="541" font-size="10.5" font-weight="700" fill="#94a3b8">南美 · 墨西哥 (拓展中)</text>
+<text x="18" y="556" font-size="8" fill="#94a3b8">巴西风电 + 太阳能 · 墨西哥风电项目</text>
+<text x="18" y="569" font-size="8" fill="#94a3b8">VPN 接入 · 4G 回传 · 轻量级部署</text>
+<text x="18" y="582" font-size="8" fill="#94a3b8">区域性边缘节点 · 本地数据合规</text>
+<text x="18" y="595" font-size="8" fill="#94a3b8" font-style="italic">LGPD (巴西) 数据保护合规</text>
+<rect x="199" y="529" width="58" height="14" rx="3" fill="#f1f5f9"/><text x="228" y="539" text-anchor="middle" font-size="6.5" font-weight="600" fill="#94a3b8">拓展中</text>
+</g>
+
+<!-- ── LEGEND ── -->
+<text x="20" y="628" font-size="9" font-weight="700" fill="#1e293b">图例</text>
+<!-- Connection types -->
+<line x1="20" y1="645" x2="55" y2="645" stroke="#1e293b" stroke-width="2.5"/>
+<text x="62" y="648" font-size="7.5" fill="#475569">专用光纤 / 专线</text>
+<line x1="175" y1="645" x2="210" y2="645" stroke="#2563eb" stroke-width="2"/>
+<text x="217" y="648" font-size="7.5" fill="#475569">SD-WAN 覆盖</text>
+<line x1="310" y1="645" x2="345" y2="645" stroke="#475569" stroke-width="1.5" stroke-dasharray="6,3"/>
+<text x="352" y="648" font-size="7.5" fill="#475569">MPLS 骨干</text>
+<line x1="430" y1="645" x2="465" y2="645" stroke="#16a34a" stroke-width="1.5" stroke-dasharray="3,3"/>
+<text x="472" y="648" font-size="7.5" fill="#475569">4G/5G 蜂窝</text>
+<line x1="560" y1="645" x2="595" y2="645" stroke="#94a3b8" stroke-width="1" stroke-dasharray="8,3,2,3"/>
+<text x="602" y="648" font-size="7.5" fill="#475569">卫星链路</text>
+<line x1="680" y1="645" x2="715" y2="645" stroke="#0891b2" stroke-width="1.5" stroke-dasharray="4,4"/>
+<text x="722" y="648" font-size="7.5" fill="#475569">IPSec VPN</text>
+<line x1="800" y1="645" x2="835" y2="645" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="8,4" opacity="0.5"/>
+<text x="842" y="648" font-size="7.5" fill="#475569">跨境 / GFW 边界</text>
+<!-- Site type badges -->
+<rect x="20" y="660" width="12" height="12" rx="2" fill="#6366f1"/><text x="38" y="670" font-size="7.5" fill="#475569">办公网络</text>
+<rect x="105" y="660" width="12" height="12" rx="2" fill="#475569"/><text x="123" y="670" font-size="7.5" fill="#475569">数据中心/PoP</text>
+<rect x="210" y="660" width="12" height="12" rx="2" fill="#d97706"/><text x="228" y="670" font-size="7.5" fill="#475569">OT/工厂网络</text>
+<rect x="315" y="660" width="12" height="12" rx="2" fill="#16a34a"/><text x="333" y="670" font-size="7.5" fill="#475569">IoT/边缘网络</text>
+<rect x="420" y="660" width="12" height="12" rx="2" fill="#0891b2"/><text x="438" y="670" font-size="7.5" fill="#475569">SCADA 控制</text>
+<rect x="525" y="660" width="12" height="12" rx="2" fill="#fff" stroke="#94a3b8" stroke-dasharray="2,1"/><text x="543" y="670" font-size="7.5" fill="#94a3b8">规划中</text>
+
+</svg>
+</div>
+</div>
+
+<!-- ── Regional Infrastructure Details ── -->
+<div style="background:#f8fafc;border-radius:12px;padding:1.5rem 2rem;box-shadow:0 2px 12px rgba(0,0,0,.06);margin:1.5rem 0">
+<h3 style="margin:0 0 .2rem;font-size:1.05rem">区域基础设施明细</h3>
+<p style="font-size:.78rem;color:#64748b;margin:0 0 1rem">各区域基础设施资产、网络类型与关键参数</p>
+<div class="net-detail-grid">
+
+<div class="net-rcard rc-cn">
+  <b>中国区 — 核心运营区域</b>
+  <ul>
+    <li><b>上海总部:</b> 500+ 员工 · 10GbE LAN · Wi-Fi 6 · 双运营商出口 (电信/联通)</li>
+    <li><b>私有 DC:</b> 上海 IDC · VMware vSphere · NetApp AFF · 200+ 物理服务器</li>
+    <li><b>智能工厂 (×3):</b> 江阴/博望/盐城 · Siemens S7 PLC · WinCC SCADA · MES</li>
+    <li><b>风电场 (50+):</b> 江苏/内蒙/新疆/广东 · 每场 20-100 台风机 · 4G+卫星双链路</li>
+    <li><b>IoT 规模:</b> 数万台设备 · 百万级数据点 · 每秒数十万条遥测</li>
+    <li><b>出口链路:</b> Express Connect 专线 · 2× MPLS · SD-WAN · IPSec VPN</li>
+  </ul>
+</div>
+
+<div class="net-rcard rc-eu">
+  <b>欧洲区 — 海上风电与合规重点</b>
+  <ul>
+    <li><b>丹麦 HQ:</b> Silkeborg · 100+ 员工 · SD-WAN 直连 Frankfurt</li>
+    <li><b>Frankfurt PoP:</b> Equinix FR5 · Direct Connect + Interconnect · 流量汇聚</li>
+    <li><b>北海海上风电:</b> 海底光纤+微波 · 海上平台边缘计算 · SCADA 隔离网络</li>
+    <li><b>陆上风电 (DE/FR/UK):</b> 光纤+4G · 本地 SCADA · 边缘计算节点</li>
+    <li><b>合规:</b> GDPR 数据驻留 · NIS2 网络安全指令 · 数据不出欧盟</li>
+    <li><b>出口链路:</b> Direct Connect · Cloud Interconnect · MPLS (Telia) · VPN</li>
+  </ul>
+</div>
+
+<div class="net-rcard rc-ap">
+  <b>亚太区 — 区域枢纽与新兴市场</b>
+  <ul>
+    <li><b>新加坡枢纽:</b> Equinix SG1 · 多云接入 · EnOS 东南亚实例 · 60+ 员工</li>
+    <li><b>日本办公室:</b> 横滨 · 40+ 员工 · 风电运维中心 · APPI 合规</li>
+    <li><b>东南亚站点:</b> 越南/泰国/印尼 · 太阳能+风电 · 4G 回传 · IoT 网关</li>
+    <li><b>拓展规划:</b> 印度太阳能 · 澳大利亚风电 · 云原生优先部署</li>
+    <li><b>出口链路:</b> Direct Connect (AWS SG) · PCCW 跨境 · SD-WAN</li>
+  </ul>
+</div>
+
+<div class="net-rcard rc-us">
+  <b>美洲区 — 风电与储能运营</b>
+  <ul>
+    <li><b>Houston HQ:</b> 美洲总部 · 80+ 员工 · SD-WAN · 企业 LAN</li>
+    <li><b>US 风电场:</b> 德克萨斯/中西部 · SCADA + 边缘 · 光纤/4G 回传</li>
+    <li><b>储能电站 (BESS):</b> 电池储能 · 电网并网 · BMS 实时调度控制</li>
+    <li><b>南美拓展:</b> 巴西风电+太阳能 · 墨西哥项目 · LGPD 合规</li>
+    <li><b>出口链路:</b> Direct Connect (us-west-2) · SD-WAN · VPN 备份</li>
+  </ul>
+</div>
+
+</div>
+
+<!-- EnOS Data Flow -->
+<div style="margin-top:1.5rem;padding:1rem;background:#fff;border-radius:8px;box-shadow:0 1px 4px rgba(0,0,0,.05)">
+<p style="font-size:.82rem;font-weight:700;color:#1e293b;margin:0 0 .5rem">EnOS 数据流路径 — 从风机到云端</p>
+<div class="net-flow">
+  <span class="nf" style="background:#fef3c7;color:#92400e">风机传感器</span><span style="color:#94a3b8">&rarr;</span>
+  <span class="nf" style="background:#fef3c7;color:#92400e">SCADA RTU</span><span style="color:#94a3b8">&rarr;</span>
+  <span class="nf" style="background:#dcfce7;color:#166534">边缘计算节点</span><span style="color:#94a3b8">&rarr;</span>
+  <span class="nf" style="background:#dbeafe;color:#1e40af">4G/光纤回传</span><span style="color:#94a3b8">&rarr;</span>
+  <span class="nf" style="background:#ede9fe;color:#5b21b6">云平台 VPC</span><span style="color:#94a3b8">&rarr;</span>
+  <span class="nf" style="background:#fce7f3;color:#9d174d">EnOS 平台</span><span style="color:#94a3b8">&rarr;</span>
+  <span class="nf" style="background:#f1f5f9;color:#334155">Dashboard / API / AI</span>
+</div>
+<p style="font-size:.68rem;color:#94a3b8;margin:.4rem 0 0">延迟预算: 传感器&rarr;边缘 &lt;10ms &middot; 边缘&rarr;云 &lt;200ms &middot; 云内处理 &lt;50ms &middot; 端到端 &lt;500ms</p>
+</div>
+</div>
+
+<!-- ── Network Classification Table ── -->
+<div style="background:#f8fafc;border-radius:12px;padding:1.5rem 2rem;box-shadow:0 2px 12px rgba(0,0,0,.06);margin:1.5rem 0">
+<h3 style="margin:0 0 .2rem;font-size:1.05rem">网络类型分类矩阵</h3>
+<p style="font-size:.78rem;color:#64748b;margin:0 0 1rem">远景能源全球基础设施涉及的七类网络及其技术参数</p>
+<table>
+  <tr class="section-header disc"><td colspan="6">网络分类与技术参数</td></tr>
+  <tr><th>网络类型</th><th>技术 / 协议</th><th>典型带宽</th><th>延迟要求</th><th>覆盖场景</th><th>冗余策略</th></tr>
+  <tr><td><b>企业 WAN</b></td><td>SD-WAN (Cisco Viptela / Fortinet)</td><td>100M-1G</td><td>&lt; 50ms 同区域</td><td>办公室↔办公室 · 办公室↔云</td><td>双运营商 + 4G LTE 备份</td></tr>
+  <tr><td><b>云专线</b></td><td>Express Connect / Direct Connect / Interconnect</td><td>1G-10G</td><td>&lt; 5ms 同城</td><td>数据中心↔云平台 · 大流量传输</td><td>双专线 + IPSec VPN 备份</td></tr>
+  <tr><td><b>运营商骨干</b></td><td>MPLS / IEPL / IPLC (CN2 GIA / PCCW / Telia)</td><td>100M-1G</td><td>&lt; 200ms 跨洲</td><td>跨国长途 · 关键业务流量</td><td>双运营商路由冗余</td></tr>
+  <tr><td><b>OT/SCADA</b></td><td>Modbus TCP · OPC UA · IEC 61850 · Profinet</td><td>10M-100M</td><td>&lt; 10ms 硬实时</td><td>风机控制 · PLC · 工厂自动化</td><td>环网冗余 · 物理隔离</td></tr>
+  <tr><td><b>IoT 回传</b></td><td>4G/5G · NB-IoT · LoRa · 卫星 (Starlink/北斗)</td><td>1M-100M</td><td>&lt; 500ms</td><td>风机遥测 · 光伏监控 · 环境传感</td><td>蜂窝 + 卫星双模</td></tr>
+  <tr><td><b>边缘网络</b></td><td>本地以太网 + K3s/MicroK8s 边缘集群</td><td>1G-10G 本地</td><td>&lt; 1ms 本地处理</td><td>风电场/工厂本地数据处理与缓存</td><td>双节点 HA + 离线自治</td></tr>
+  <tr><td><b>跨境专线</b></td><td>CN2 GIA · PCCW Global · 合规网关</td><td>100M-500M</td><td>&lt; 150ms CN↔EU</td><td>中国↔海外数据合规传输</td><td>双路由 + 合规审计日志</td></tr>
+</table>
+</div>
+
+<!-- ── Security Zones — Purdue Model ── -->
+<div style="background:#f8fafc;border-radius:12px;padding:1.5rem 2rem;box-shadow:0 2px 12px rgba(0,0,0,.06);margin:1.5rem 0">
+<h3 style="margin:0 0 .2rem;font-size:1.05rem">网络安全分区 — 基于 IEC 62443 / Purdue 模型</h3>
+<p style="font-size:.78rem;color:#64748b;margin:0 0 1rem">能源行业 IT/OT 融合场景下的网络安全分区策略，确保工业控制系统与企业 IT 系统之间的安全隔离</p>
+<div class="net-zone-grid">
+
+<div class="net-zone nz-ot">
+  <b>L0-L2 · OT 过程控制区</b>
+  <p>风机传感器/执行器 (L0) &rarr; PLC/RTU 控制器 (L1) &rarr; SCADA/HMI 监控 (L2)<br>
+  <b>协议:</b> Modbus TCP · OPC UA · IEC 61850 · Profinet<br>
+  <b>安全:</b> 物理隔离 · 严禁外部直连 · 白名单访问控制 · 专用交换机</p>
+</div>
+
+<div class="net-zone nz-dmz">
+  <b>L3.5 · 工业 DMZ</b>
+  <p>OT 与 IT 之间的安全缓冲区 — 最关键的边界<br>
+  <b>设备:</b> 数据二极管 (Data Diode) · 工业防火墙 · Jump Host<br>
+  <b>功能:</b> 单向数据传输 · 协议转换 · 安全审计<br>
+  <b>标准:</b> IEC 62443 · NIST SP 800-82</p>
+</div>
+
+<div class="net-zone nz-it">
+  <b>L3-L4 · 企业 IT 区</b>
+  <p>Site 运营系统 (L3: Historian · MES) &rarr; 企业业务 (L4: ERP · CRM)<br>
+  <b>系统:</b> SAP ERP · Historian · MES · CRM · 邮件 · AD<br>
+  <b>安全:</b> AD 域控 · 终端 EDR · DLP · 网络微分段 · NAC</p>
+</div>
+
+<div class="net-zone nz-cloud">
+  <b>L5 · 云平台区</b>
+  <p>多云 VPC 网络 · K8s 集群网络 · 服务网格 (Service Mesh)<br>
+  <b>安全:</b> Security Group · NACL · WAF · DDoS · CSPM<br>
+  <b>认证:</b> 等保 2.0 三级 · SOC 2 Type II · ISO 27001</p>
+</div>
+
+<div class="net-zone nz-iot">
+  <b>IoT · 设备接入区</b>
+  <p>风机/光伏/储能 &rarr; IoT 网关 &rarr; 边缘节点 &rarr; 云平台<br>
+  <b>协议:</b> MQTT · CoAP · HTTPS · 私有协议<br>
+  <b>安全:</b> 设备证书 (X.509) · TLS 1.3 · 设备指纹 · OTA 安全更新</p>
+</div>
+
+<div class="net-zone nz-mgmt">
+  <b>管理 · 带外管理区 (OOB)</b>
+  <p>独立于业务网络的设备管理通道<br>
+  <b>用途:</b> 网络设备管理 · 服务器 IPMI/iLO · 跳板机 · 堡垒机<br>
+  <b>安全:</b> 独立 VLAN · MFA 强制 · 操作审计录像 · 最小权限</p>
+</div>
+
+</div>
+</div>
+
+<!-- ===== 3. IT/OT Integration ===== -->
+<h2 id="sec-itot">3. IT/OT 融合 — 为什么远景的基础设施比任何时候都更关键</h2>
+
+<!-- Opening: Strategic Context -->
+<div class="card">
+<p style="font-size:.85rem;color:#1e293b;line-height:1.8;margin:0">
+远景能源的基础设施有一个本质特征，区别于所有纯 IT 企业：<b>它同时承载着 IT 和 OT 两个世界</b>。EnOS 平台不只是一个跑在云上的 SaaS 应用 — 它的下游直接连接着数十万台风机的 PLC 控制器、SCADA 系统和 BMS 电池管理模块。每一个网络架构决策、每一条防火墙规则、每一个 DR 方案，都同时影响着<b>数据安全</b>和<b>物理安全</b>。
+</p>
+<p style="font-size:.82rem;color:#475569;line-height:1.8;margin:.8rem 0 0">
+更关键的是，远景正处于 IT/OT 融合的加速期。从最初的"采集 &rarr; 上云 &rarr; 看报表"，正在向"边缘实时推理 &rarr; 数字孪生 &rarr; 自主控制"演进。这个演进过程对基础设施的要求不是线性增长，而是<b>指数级跃迁</b> — 远景同时是设备制造商、平台运营商、能源服务商，三重身份叠加意味着基础设施不再只是"保障业务运行"的后台支撑，而是直接影响风机发电效率、电网调度收益、碳资产价值的<b>核心生产要素</b>。
+</p>
+</div>
+
+<!-- Three-Phase Progression -->
+<div style="background:#f8fafc;border-radius:12px;padding:1.5rem 2rem;box-shadow:0 2px 12px rgba(0,0,0,.06);margin:1.5rem 0">
+<h3 style="margin:0 0 .2rem;font-size:1.05rem">IT/OT 融合的三个阶段 — 远景正处于关键跃迁期</h3>
+<p style="font-size:.78rem;color:#64748b;margin:0 0 1rem">每个阶段对基础设施的要求截然不同。远景正从第二阶段向第三阶段跃迁，这是基础设施压力最大的窗口期。</p>
+<div class="itot-phases">
+
+<div class="itot-phase" style="border-top-color:#059669;opacity:.75">
+  <div class="ip-tag" style="color:#059669">PHASE 1 · 已基本完成</div>
+  <b>数据采集与上云</b>
+  <p>SCADA 采集风机运行数据，通过 IoT 网关上传至云端存储和展示。数据流是<b>单向的</b>（OT &rarr; IT），IT 和 OT 物理隔离。</p>
+  <ul>
+    <li>基础设施要求：带宽充足、存储可扩展</li>
+    <li>网络复杂度：低 — 单向数据管道</li>
+    <li>安全压力：低 — OT 网络完全隔离</li>
+  </ul>
+</div>
+
+<div class="itot-phase" style="border-top-color:#d97706;box-shadow:0 4px 20px rgba(217,119,6,.12)">
+  <div class="ip-tag" style="color:#d97706">PHASE 2 · 当前阶段</div>
+  <b>智能优化与闭环控制</b>
+  <p>云端 AI 分析数据后<b>反向下发控制指令</b>：优化偏航角、调整桨距、预测性维护工单。数据流变为<b>双向</b>（OT &harr; IT）。</p>
+  <ul>
+    <li>基础设施要求：低延迟双向通道、高可用</li>
+    <li>网络复杂度：高 — IT/OT 必须安全互通</li>
+    <li>安全压力：高 — 控制指令经过 IT 网络</li>
+  </ul>
+</div>
+
+<div class="itot-phase" style="border-top-color:#2563eb">
+  <div class="ip-tag" style="color:#2563eb">PHASE 3 · 即将进入</div>
+  <b>自主运营与实时交易</b>
+  <p>边缘 AI 在风机端实时决策，数字孪生精确预测，虚拟电厂参与电力市场毫秒级竞价。<b>IT 即 OT</b>，边界消融。</p>
+  <ul>
+    <li>基础设施要求：边缘算力 + 确定性网络 + 实时数据管道</li>
+    <li>网络复杂度：极高 — 边缘/云/OT 三网融合</li>
+    <li>安全压力：极高 — 攻击面指数扩大</li>
+  </ul>
+</div>
+
+</div>
+</div>
+
+<!-- Five Fusion Drivers -->
+<div style="background:#f8fafc;border-radius:12px;padding:1.5rem 2rem;box-shadow:0 2px 12px rgba(0,0,0,.06);margin:1.5rem 0">
+<h3 style="margin:0 0 .2rem;font-size:1.05rem">五个正在发生的融合驱动力</h3>
+<p style="font-size:.78rem;color:#64748b;margin:0 0 1rem">每一个都在对基础设施提出新的、具体的要求</p>
+<div class="itot-drivers">
+
+<div class="itot-driver" style="border-left-color:#2563eb">
+  <b>数字孪生 Digital Twin</b>
+  <p>每台风机都有一个云端数字映射，实时同步转速、振动、温度、功率曲线。用于全生命周期仿真和优化。</p>
+  <div class="itot-kpi">基础设施: 风机&rarr;边缘&rarr;云 延迟 &lt;200ms · 数据完整率 &gt;99.9%</div>
+</div>
+
+<div class="itot-driver" style="border-left-color:#059669">
+  <b>边缘 AI Edge Intelligence</b>
+  <p>叶片冰冻检测、轴承异常预判需要毫秒级推理。不能等待云端往返 — 模型从云端分发，推理在边缘执行。</p>
+  <div class="itot-kpi">基础设施: 每场站 AI 推理节点 · 模型 OTA 分发 · 故障预警提前 72h</div>
+</div>
+
+<div class="itot-driver" style="border-left-color:#7c3aed">
+  <b>虚拟电厂 VPP</b>
+  <p>将分散的风电、光伏、储能聚合为一个虚拟电厂，参与电力市场竞价。需要跨站点低延迟协调和实时功率调度。</p>
+  <div class="itot-kpi">基础设施: 跨站点协调 &lt;500ms · 实时 API 对接电网调度中心</div>
+</div>
+
+<div class="itot-driver" style="border-left-color:#d97706">
+  <b>储能智能调度</b>
+  <p>电池充放电策略基于实时电价、电网需求、电池 SOH 动态优化。BMS 与云端形成毫秒级决策闭环。</p>
+  <div class="itot-kpi">基础设施: BMS&harr;云端 闭环 &lt;100ms · 储能利用率提升 15-25%</div>
+</div>
+
+<div class="itot-driver" style="border-left-color:#16a34a">
+  <b>碳资产数字化</b>
+  <p>每度绿电的碳减排量需要精确计量、可追溯、可交易。数据完整性直接影响碳信用价值 — 差的数据 = 打折的碳资产。</p>
+  <div class="itot-kpi">基础设施: 数据不可篡改 · 对接碳交易平台 API · 审计追溯链</div>
+</div>
+
+</div>
+</div>
+
+<!-- Security Paradox -->
+<div style="background:#f8fafc;border-radius:12px;padding:1.5rem 2rem;box-shadow:0 2px 12px rgba(0,0,0,.06);margin:1.5rem 0">
+<h3 style="margin:0 0 .2rem;font-size:1.05rem">融合的安全悖论</h3>
+<p style="font-size:.78rem;color:#64748b;margin:0 0 1rem">不融合，远景将丧失数字化竞争优势；过度融合且缺乏安全边界，一次 OT 入侵可能导致风机叶片超速</p>
+<table>
+  <tr class="section-header risk"><td colspan="4">IT 安全事件 vs OT 安全事件 — 本质差异</td></tr>
+  <tr><th></th><th style="width:40%">IT 系统被攻破</th><th style="width:40%">OT 系统被攻破</th></tr>
+  <tr><td><b>直接后果</b></td><td>数据泄露、服务中断</td><td style="color:#dc2626;font-weight:600">风机失控、物理设备损坏、人身安全威胁</td></tr>
+  <tr><td><b>影响范围</b></td><td>数据和商业声誉</td><td style="color:#dc2626;font-weight:600">设备安全、电网稳定、周边环境</td></tr>
+  <tr><td><b>恢复时间</b></td><td>小时 ~ 天（重启/恢复）</td><td style="color:#dc2626;font-weight:600">周 ~ 月（物理修复、部件更换）</td></tr>
+  <tr><td><b>恢复成本</b></td><td>罚款 + 数据修复</td><td style="color:#dc2626;font-weight:600">设备更换 + 停产损失 + 潜在诉讼</td></tr>
+  <tr><td><b>环境影响</b></td><td>基本无直接环境影响</td><td style="color:#dc2626;font-weight:600">齿轮箱油液泄漏、叶片碎片、有害物质扩散 — 可触发环保监管</td></tr>
+  <tr><td><b>级联效应</b></td><td>服务降级可隔离至单个微服务</td><td style="color:#dc2626;font-weight:600">融合后系统互联 — 一个节点失效可触发安全系统级联失效</td></tr>
+  <tr><td><b>可降级运行</b></td><td>可以（返回维护页面、限流）</td><td style="color:#dc2626;font-weight:600">有限（风机只能紧急停机，不能"返回 503"）</td></tr>
+</table>
+<p style="font-size:.8rem;color:#1e293b;line-height:1.7;margin:1rem 0 0;padding:1rem;background:#fff;border-radius:8px;border-left:4px solid #d97706">
+<b>核心挑战不是选择"融合"还是"隔离"，而是：在安全的前提下实现最大程度的融合。</b>融合创造业务价值的同时，也创造了新的单点故障 — 原本独立的系统一旦互联，一个节点的失效可能触发级联反应。技术层面：用 Purdue 模型划清边界，用加固的工业 DMZ 严格控制跨区数据流，部署 OT 专用入侵检测与异常检测系统，在 <b>IEC 62443 / NIST SP 800-82</b> 框架内建立纵深防御。管理层面：<b>看不见的资产无法保护</b> — OT 资产全面可视化（Asset Inventory）是一切安全措施的前提，也是 EY 等咨询机构推荐的融合路线图第一步。
+</p>
+</div>
+
+<!-- Governance & Organization -->
+<div style="background:#f8fafc;border-radius:12px;padding:1.5rem 2rem;box-shadow:0 2px 12px rgba(0,0,0,.06);margin:1.5rem 0">
+<h3 style="margin:0 0 .2rem;font-size:1.05rem">治理与组织 — 融合失败的首要原因不是技术，而是组织</h3>
+<p style="font-size:.78rem;color:#64748b;margin:0 0 1rem">IT 和 OT 团队历史上并行运作，语言不通、目标不同、风险认知截然不同。技术架构再好，如果组织和文化不支撑，融合只会停留在 PPT 上。</p>
+<table>
+  <tr class="section-header exec"><td colspan="3">IT/OT 融合治理要点</td></tr>
+  <tr><th style="width:150px">治理维度</th><th style="width:42%">核心要求</th><th>对远景的具体含义</th></tr>
+  <tr><td><b>OT 安全归属</b></td><td>OT 网络安全治理应归属<b>安全委员会（HSE）</b>而非 IT 部门 — OT 风险的本质是物理安全和环境安全</td><td>风机控制网络的安全策略需要 HSE 和 IT 联合审批，不能只过 IT 安全评审</td></tr>
+  <tr><td><b>跨职能团队</b></td><td>打破 IT/OT 孤岛，建立共享风险认知和业务目标的协作机制；设立嵌入运营现场的安全联络人（Security Champion）</td><td>基础设施负责人需同时对接 IT infra 团队、风电场 OT 运维、EnOS 平台团队</td></tr>
+  <tr><td><b>安全意识下沉</b></td><td>安全不止是 IT 团队的事 — 现场巡检员、外包运维、设备安装承包商都需要嵌入式安全培训</td><td>一个不锁屏的 SCADA HMI、一个插入 U 盘的巡检员，都可能成为攻击入口</td></tr>
+  <tr><td><b>供应商访问管控</b></td><td>核心元器件供应商（Siemens PLC、ABB 变频器、Schneider 电气）及储能电芯厂商（CATL 等）需远程接入 OT 网络做固件升级与诊断 — 这是<b>最大的第三方攻击面</b></td><td>建立 OT 供应商远程访问审批流程、专用 Jump Host、全会话审计录像</td></tr>
+  <tr><td><b>高层级推动</b></td><td>IT/OT 融合需要 CIO/COO 级别的跨组织推动力；缺乏可见的领导层支持将导致变革惰性和部门互相推诿</td><td>该岗位需要 CIO 的明确授权和资源承诺 — 不是一个人的技术项目，而是组织级变革</td></tr>
+  <tr><td><b>从合规到主动</b></td><td>从被动合规检查（过等保、过 ISO 27001）转向主动安全运营 — 持续威胁监测、OT 安全演练、安全度量指标</td><td>建立 OT 专项安全演练（区别于 IT 渗透测试），模拟 SCADA 被入侵场景，纳入年度安全日历</td></tr>
+</table>
+</div>
+
+<!-- Infrastructure Implications -->
+<div style="background:#f8fafc;border-radius:12px;padding:1.5rem 2rem;box-shadow:0 2px 12px rgba(0,0,0,.06);margin:1.5rem 0">
+<h3 style="margin:0 0 .2rem;font-size:1.05rem">对基础设施各域的直接影响</h3>
+<p style="font-size:.78rem;color:#64748b;margin:0 0 1rem">IT/OT 融合不是一个抽象概念 — 它对网络、安全、容灾、监控、成本每个域都有具体的、不同于纯 IT 的要求</p>
+<table>
+  <tr class="section-header disc"><td colspan="4">IT 视角 vs OT 视角 — 基础设施需求对比</td></tr>
+  <tr><th>基础设施域</th><th>IT 视角</th><th>OT 视角</th><th>融合挑战</th></tr>
+  <tr><td><b>网络</b></td><td>弹性带宽、按需扩展、尽力而为</td><td>确定性延迟、高可用、物理隔离</td><td>同一骨干网上实现差异化 QoS，IT 流量不能抢占 OT 带宽</td></tr>
+  <tr><td><b>安全</b></td><td>CIA 模型 — 机密性优先</td><td>AIC 模型 — <b>可用性优先</b></td><td>Purdue 模型落地，工业 DMZ 设计，安全措施不能影响 OT 可用性</td></tr>
+  <tr><td><b>容灾</b></td><td>RTO/RPO 定义在小时级</td><td>分钟级甚至秒级</td><td>风机 SCADA 不能接受小时级中断 — DR 方案必须分级设计</td></tr>
+  <tr><td><b>监控</b></td><td>应用性能监控 (APM)</td><td>过程参数监控 (SCADA HMI)</td><td>统一展示平台，但数据面必须隔离 — OT 数据不走 IT 采集管道</td></tr>
+  <tr><td><b>成本</b></td><td>OpEx 为主，弹性付费，月度周期</td><td>CapEx 为主，10-20 年生命周期</td><td>TCO 模型完全不同，不能用 IT 的 FinOps 思维套 OT 基础设施</td></tr>
+  <tr><td><b>变更管理</b></td><td>持续部署，蓝绿发布，快速回滚</td><td>严格变更窗口，停机维护，长周期验证</td><td>同一个 IaC 体系必须区分 IT 和 OT 变更节奏</td></tr>
+</table>
+</div>
+
+<!-- Closing Statement -->
+<div class="card" style="border-left:4px solid #2563eb;background:linear-gradient(135deg,#f8fafc,#eef2ff)">
+<p style="font-size:.85rem;color:#1e293b;line-height:1.8;margin:0">
+<b>这个岗位不是一个传统的 IT 基础设施负责人。</b>远景需要的是一个能听懂 OT 工程师说"Modbus 寄存器映射"、同时能和云架构师讨论"Kubernetes Service Mesh"的人。他/她需要在 IEC 62443 的安全框架内，为远景的 IT/OT 融合铺设一条既安全又高效的基础设施底座 — 让每一台风机的遥测数据安全地变成 AI 模型的输入，让每一个云端的优化指令安全地变成风机的执行动作。
+</p>
+</div>
+
+<!-- ===== 4. Core Capabilities ===== -->
+<h2 id="sec-cap">4. 核心能力域 — 该岗位需要具备的八大能力</h2>
+<div style="background:#f8fafc;border-radius:12px;padding:1.5rem 2rem;box-shadow:0 2px 12px rgba(0,0,0,.06);margin:1.5rem 0">
+<p style="font-size:.78rem;color:#64748b;margin:0 0 1rem">以下八大能力域构成全球 IaaS 基础设施负责人的完整能力画像。每个能力域包含核心职责和关键技能要求。</p>
+<div class="cap-grid">
+
+  <div class="cap-card" style="border-top-color:#dc2626">
+    <div class="cap-num" style="color:#dc2626">能力一</div>
+    <b>全球网络架构</b>
+    <span>设计和管理跨 8+ 国家的全球网络拓扑，确保 EnOS 平台低延迟互联</span>
+    <ul>
+      <li>SD-WAN / 专线互联 / Peering 规划</li>
+      <li>跨区域流量工程与成本优化</li>
+      <li>混合云网络（Cloud Interconnect / VPN）</li>
+    </ul>
+  </div>
+
+  <div class="cap-card" style="border-top-color:#d97706">
+    <div class="cap-num" style="color:#d97706">能力二</div>
+    <b>多云 / 混合云管理</b>
+    <span>统一编排阿里云、AWS、GCP 和私有云环境，避免各自为政</span>
+    <ul>
+      <li>多云资源统一管理平台</li>
+      <li>跨云网络打通与服务编排</li>
+      <li>云厂商合同谈判与 SLA 管理</li>
+    </ul>
+  </div>
+
+  <div class="cap-card" style="border-top-color:#be185d">
+    <div class="cap-num" style="color:#be185d">能力三</div>
+    <b>安全合规治理</b>
+    <span>在多国法规框架下（等保 2.0、GDPR、PDPA）保障数据安全与业务合规</span>
+    <ul>
+      <li>数据驻留与跨境传输合规</li>
+      <li>零信任架构落地</li>
+      <li>安全审计与持续合规监控</li>
+    </ul>
+  </div>
+
+  <div class="cap-card" style="border-top-color:#2563eb">
+    <div class="cap-num" style="color:#2563eb">能力四</div>
+    <b>基础设施即代码（IaC）</b>
+    <span>推动全部基础设施以代码方式管理，实现可审计、可复现、可回滚</span>
+    <ul>
+      <li>Terraform / Pulumi 多云编排</li>
+      <li>GitOps 工作流与变更管理</li>
+      <li>配置漂移检测与自动修复</li>
+    </ul>
+  </div>
+
+  <div class="cap-card" style="border-top-color:#059669">
+    <div class="cap-num" style="color:#059669">能力五</div>
+    <b>成本管理与 FinOps</b>
+    <span>建立跨云成本可视化与优化机制，实现单位业务成本持续下降</span>
+    <ul>
+      <li>多云成本归集与 Chargeback</li>
+      <li>预留实例 / Spot / 弹性策略优化</li>
+      <li>成本异常告警与治理闭环</li>
+    </ul>
+  </div>
+
+  <div class="cap-card" style="border-top-color:#7c3aed">
+    <div class="cap-num" style="color:#7c3aed">能力六</div>
+    <b>容灾与高可用</b>
+    <span>为 EnOS 及核心业务系统设计跨区域 DR 方案，保障业务连续性</span>
+    <ul>
+      <li>RPO / RTO 分级与 BIA 评估</li>
+      <li>跨区域主备 / 双活架构</li>
+      <li>定期演练与自动化切换</li>
+    </ul>
+  </div>
+
+  <div class="cap-card" style="border-top-color:#0891b2">
+    <div class="cap-num" style="color:#0891b2">能力七</div>
+    <b>可观测性平台</b>
+    <span>构建跨云统一监控体系，实现全局可视化与智能告警</span>
+    <ul>
+      <li>Metrics / Logs / Traces 统一采集</li>
+      <li>跨云 Dashboard 与关联分析</li>
+      <li>AIOps 异常检测与根因定位</li>
+    </ul>
+  </div>
+
+  <div class="cap-card" style="border-top-color:#f59e0b">
+    <div class="cap-num" style="color:#f59e0b">能力八</div>
+    <b>团队建设与管理</b>
+    <span>建设全球分布式基础设施团队，弥合区域间能力差距</span>
+    <ul>
+      <li>跨时区协作与 On-Call 体系</li>
+      <li>云原生技能培训与认证</li>
+      <li>供应商关系管理与生态建设</li>
+    </ul>
+  </div>
+
+</div>
+</div>
+
+<!-- ===== 5. Pain Points ===== -->
+<h2 id="sec-pain">5. 痛点诊断 — 远景能源 IaaS 层面十大痛点</h2>
+<div style="background:#f8fafc;border-radius:12px;padding:1.5rem 2rem;box-shadow:0 2px 12px rgba(0,0,0,.06);margin:1.5rem 0">
+<p style="font-size:.78rem;color:#64748b;margin:0 0 1rem">基于远景能源全球化运营特点和能源行业特殊性，以下 10 个痛点按严重等级排序。S0 为直接威胁业务连续性的紧急事项，S3 为需长期关注的战略问题。</p>
+
+<div class="pain-grid">
+
+  <div class="pain-card s0">
+    <div class="pain-hdr"><span class="sev sev-s0">S0</span> <b>#1 多地区网络架构碎片化</b></div>
+    <div class="pain-desc">中国、欧洲、东南亚等各区域网络独立建设，缺乏统一骨干网络。各地 VPN / 专线各自采购，导致 EnOS 平台跨区域数据同步延迟高、链路不稳定，风电场远程监控存在盲区。</div>
+    <div class="pain-impact"><b>业务影响：</b>跨区域 EnOS 数据同步 P99 延迟 > 2s，远程运维响应时效无法保障</div>
+  </div>
+
+  <div class="pain-card s0">
+    <div class="pain-hdr"><span class="sev sev-s0">S0</span> <b>#2 安全合规差距</b></div>
+    <div class="pain-desc">在中国（等保 2.0、数据安全法）、欧盟（GDPR、NIS2）、新加坡（PDPA）等多国运营，数据驻留要求与现有集中式架构冲突。跨境数据传输缺乏合规机制，面临监管处罚风险。</div>
+    <div class="pain-impact"><b>业务影响：</b>合规缺口可能导致欧洲业务受限，最高面临全球营收 4% 的 GDPR 罚款</div>
+  </div>
+
+  <div class="pain-card s0">
+    <div class="pain-hdr"><span class="sev sev-s0">S0</span> <b>#3 灾备能力缺失</b></div>
+    <div class="pain-desc">EnOS 平台和 SCADA 数据采集系统缺乏跨区域灾备方案。单区域故障可能导致风电场监控中断，涉及设备安全和发电效率，对能源行业而言是重大运营风险。</div>
+    <div class="pain-impact"><b>业务影响：</b>区域故障 RTO > 24h，风电场失去实时监控将影响发电收入和设备安全</div>
+  </div>
+
+  <div class="pain-card s1">
+    <div class="pain-hdr"><span class="sev sev-s1">S1</span> <b>#4 IaC 覆盖率低</b></div>
+    <div class="pain-desc">大量基础设施仍为手工配置，各区域运维团队各自维护。无版本控制、无审计轨迹、环境不可复现。变更引发故障时难以快速回滚，且无法实现一致性部署。</div>
+    <div class="pain-impact"><b>业务影响：</b>环境配置漂移导致月均 2-3 次非计划停机，变更回滚平均耗时 4h+</div>
+  </div>
+
+  <div class="pain-card s1">
+    <div class="pain-hdr"><span class="sev sev-s1">S1</span> <b>#5 云成本失控</b></div>
+    <div class="pain-desc">多云环境（阿里云 / AWS / GCP）缺乏统一 FinOps 治理。资源利用率低（部分环境 < 20%）、预留实例过期未续、无 Chargeback 机制。云支出年增长 35%+ 但业务增长未同步。</div>
+    <div class="pain-impact"><b>业务影响：</b>云支出增速远超业务增速，预计年度超预算 20%+</div>
+  </div>
+
+  <div class="pain-card s1">
+    <div class="pain-hdr"><span class="sev sev-s1">S1</span> <b>#6 监控可观测性不足</b></div>
+    <div class="pain-desc">监控工具碎片化：私有云用 Zabbix、AWS 用 CloudWatch、GCP 用 Cloud Monitoring、阿里云用云监控。无统一 Dashboard，无法做跨云关联分析。告警风暴频繁，真正的问题反而被淹没。</div>
+    <div class="pain-impact"><b>业务影响：</b>MTTR > 45 min，告警疲劳导致 P1 事件平均发现延迟 15 min</div>
+  </div>
+
+  <div class="pain-card s2">
+    <div class="pain-hdr"><span class="sev sev-s2">S2</span> <b>#7 IAM 管理混乱</b></div>
+    <div class="pain-desc">各云环境独立的身份体系，未统一至企业 IdP。存在共享账号、部分区域未强制 MFA、特权账号未定期审查。入离职流程未与云权限联动，权限膨胀严重。</div>
+    <div class="pain-impact"><b>业务影响：</b>审计发现多个 dormant 特权账号，安全审计不过关风险高</div>
+  </div>
+
+  <div class="pain-card s2">
+    <div class="pain-hdr"><span class="sev sev-s2">S2</span> <b>#8 容量规划缺失</b></div>
+    <div class="pain-desc">IoT 设备增长（风电机组、光伏面板、储能电池）驱动计算和存储需求不可预测。缺乏容量预测模型，完全被动扩容，多次出现高峰期资源不足导致数据处理积压。</div>
+    <div class="pain-impact"><b>业务影响：</b>季度至少 1 次因容量不足导致 EnOS 数据处理延迟 > 2h</div>
+  </div>
+
+  <div class="pain-card s2">
+    <div class="pain-hdr"><span class="sev sev-s2">S2</span> <b>#9 运维团队技能差距</b></div>
+    <div class="pain-desc">运维团队在传统基础设施领域经验丰富，但云原生技能（K8s、Serverless、IaC、SRE 实践）薄弱。各区域能力参差不齐，中国团队云能力相对较强，欧洲和东南亚团队偏传统。</div>
+    <div class="pain-impact"><b>业务影响：</b>新技术方案落地慢，对云厂商 PS 依赖度高，人效比低于行业水平</div>
+  </div>
+
+  <div class="pain-card s3">
+    <div class="pain-hdr"><span class="sev sev-s3">S3</span> <b>#10 供应商锁定风险</b></div>
+    <div class="pain-desc">中国区深度使用阿里云专有服务（如 DRDS、MaxCompute），海外区域依赖 AWS 专有服务。缺乏抽象层，未来迁移成本高、周期长。当前不紧急，但会限制长期架构灵活性。</div>
+    <div class="pain-impact"><b>业务影响：</b>当前影响可控，但若需迁移预计成本和时间增加 3-5x</div>
+  </div>
+
+</div>
+</div>
+
+<!-- ===== 6. Dependencies ===== -->
+<h2 id="sec-dep">6. 依赖关系 — 痛点之间的关键依赖</h2>
+<div class="dep-wrap">
+<p style="font-size:.78rem;color:#64748b;margin:0 0 1rem">10 个痛点并非完全独立。以下关键依赖关系决定了执行顺序和并行策略。</p>
+<div class="dep-grid">
+
+  <div class="dep-item">
+    <b>#1 网络碎片化 <span class="dep-arrow">&rarr;</span> #3 灾备缺失</b>
+    跨区域灾备依赖统一骨干网络。#1 的网络改造完成后，#3 的 DR 环境才能跨区域部署和验证。这是<b>最长关键路径</b>。
+  </div>
+
+  <div class="dep-item">
+    <b>#4 IaC 框架 <span class="dep-arrow">&rarr;</span> #6 监控可观测性</b>
+    统一监控平台的部署需要 IaC 框架支撑，确保各区域一致性接入。#4 的 IaC 框架搭建完成后，#6 可以基于此快速部署。
+  </div>
+
+  <div class="dep-item">
+    <b>#7 IAM 整改 <span class="dep-arrow">&rarr;</span> #2 安全合规</b>
+    安全合规验证的前提之一是 IAM 策略的规范化。#7 的 IAM 整改为 #2 的合规审计验证提供基础。两者建议并行推进。
+  </div>
+
+</div>
+
+<div style="margin-top:1rem;padding:1rem;background:#fff;border-radius:8px;box-shadow:0 1px 4px rgba(0,0,0,.05)">
+<p style="font-size:.78rem;color:#475569;margin:0;line-height:1.6"><b>并行策略：</b>10 个痛点 Day 1 全部启动诊断阶段（W1-W8），互不等待。有依赖关系的痛点在执行阶段通过甘特图中的等待段（虚线框）自动同步。无依赖的痛点全程并行推进。</p>
+</div>
+</div>
+
+<!-- ===== 7. Gantt Chart ===== -->
+<h2 id="sec-gantt">7. 加速提升计划 — 52 周并行推进时间线</h2>
+<div class="gt" id="gantt-envision">
+  <h3>远景能源 IaaS 痛点加速提升甘特图</h3>
+</div>
+
+<div style="background:#f8fafc;border-radius:12px;padding:1rem 2rem;margin:1rem 0">
+<div class="gt-legend">
+  <span><i class="leg-act"></i> 主动执行</span>
+  <span><i class="leg-ext"></i> 外部等待（不可压缩）</span>
+  <span><i class="leg-blk"></i> 依赖等待</span>
+  <span><i class="leg-crit"></i> 关键路径</span>
+  <span><i class="leg-done"></i> 就绪</span>
+</div>
+<ul class="gt-notes">
+  <li><b>拖拽交互：</b>拖动各色方块的左右边缘可调整工期，下游任务会自动级联调整。</li>
+  <li><b>依赖弧线：</b>有弧线相连的任务存在硬依赖，上游延期会自动传导到下游。</li>
+  <li><b>关键路径：</b><em>关键路径</em> #1 骨干网络改造（W14-W30）是全局最长瓶颈，直接决定 #3 灾备的启动时间。</li>
+  <li><b>不可压缩：</b>#2 安全合规的监管审批等待（W14-W24）为外部依赖，无法通过内部资源压缩。</li>
+</ul>
+</div>
+
+<!-- ===== 8. Phased Delivery ===== -->
+<h2 id="sec-phase">8. 分阶段交付 — 四阶段里程碑</h2>
+<div style="background:#f8fafc;border-radius:12px;padding:1.5rem 2rem;box-shadow:0 2px 12px rgba(0,0,0,.06);margin:1.5rem 0">
+<p style="font-size:.78rem;color:#64748b;margin:0 0 1rem">52 周计划分为四个阶段，每个阶段有明确的交付物和验收标准。</p>
+<div class="phase-grid">
+
+  <div class="phase-card p1">
+    <div class="phase-tag" style="color:#dc2626">Phase 1 · W1-W8</div>
+    <b>全面诊断与方案设计</b>
+    <ul>
+      <li>全球网络现状审计报告</li>
+      <li>多国合规差距分析报告</li>
+      <li>BIA 评估与 DR 需求分析</li>
+      <li>IaC / 监控 / IAM 现状盘点</li>
+      <li>成本分析与优化机会清单</li>
+      <li>团队技能评估矩阵</li>
+      <li><b>交付物：</b>10 份诊断报告 + 统一改进方案</li>
+    </ul>
+  </div>
+
+  <div class="phase-card p2">
+    <div class="phase-tag" style="color:#d97706">Phase 2 · W9-W20</div>
+    <b>基础建设与框架搭建</b>
+    <ul>
+      <li>统一网络架构设计定稿</li>
+      <li>合规方案提交监管审批</li>
+      <li>IaC 框架搭建 + 首批资源纳管</li>
+      <li>FinOps 平台上线 + 首轮优化</li>
+      <li>IAM 策略设计 + 统一 IdP 对接</li>
+      <li>培训体系启动</li>
+      <li><b>交付物：</b>核心框架就绪，进入规模化实施</li>
+    </ul>
+  </div>
+
+  <div class="phase-card p3">
+    <div class="phase-tag" style="color:#2563eb">Phase 3 · W21-W38</div>
+    <b>规模化实施与深度改造</b>
+    <ul>
+      <li>骨干网络改造完成（关键路径）</li>
+      <li>IaC 逐步迁移（覆盖率 > 60%）</li>
+      <li>统一监控平台建设 + 接入</li>
+      <li>IAM 全面整改实施</li>
+      <li>DR 环境建设启动</li>
+      <li>成本优化持续执行</li>
+      <li>多云策略设计 + 抽象层建设</li>
+      <li><b>交付物：</b>核心基础设施改造完成</li>
+    </ul>
+  </div>
+
+  <div class="phase-card p4">
+    <div class="phase-tag" style="color:#059669">Phase 4 · W39-W52</div>
+    <b>验收优化与稳态运营</b>
+    <ul>
+      <li>全球网络端到端压测 + 持续优化</li>
+      <li>DR 演练验收 + 常态化季度演练</li>
+      <li>合规审计验证通过 + 持续合规监控</li>
+      <li>IaC 全量覆盖 + 监控全面覆盖 + AIOps 试点</li>
+      <li>FinOps 治理闭环 + 持续优化</li>
+      <li>团队认证考核 + 持续发展体系</li>
+      <li>多云抽象层迁移验证</li>
+      <li><b>交付物：</b>10 大痛点全部闭环，进入稳态运营</li>
+    </ul>
+  </div>
+
+</div>
+</div>
+
+<!-- ===== 9. Risk Management ===== -->
+<h2 id="sec-risk">9. 风险管控 — 关键风险与缓解措施</h2>
+<div class="risk-wrap">
+<p style="font-size:.78rem;color:#64748b;margin:0 0 1rem">以下为执行过程中需重点关注的风险及预设缓解措施。</p>
+<table>
+  <tr class="section-header risk"><td colspan="4">风险登记簿</td></tr>
+  <tr><th style="width:60px">等级</th><th style="width:200px">风险描述</th><th>影响</th><th>缓解措施</th></tr>
+  <tr>
+    <td><span class="sev sev-s0">高</span></td>
+    <td>骨干网络改造周期超预期</td>
+    <td>关键路径延期，#3 灾备连锁延后</td>
+    <td>W8 前完成 PoC 验证，预留 4 周缓冲；提前签订运营商 SLA</td>
+  </tr>
+  <tr>
+    <td><span class="sev sev-s0">高</span></td>
+    <td>监管审批周期不可控</td>
+    <td>#2 合规策略部署延后</td>
+    <td>W1 即启动合规材料准备；聘请当地合规顾问加速审批</td>
+  </tr>
+  <tr>
+    <td><span class="sev sev-s1">中</span></td>
+    <td>多云 IaC 迁移导致生产事故</td>
+    <td>业务中断，团队信心受挫</td>
+    <td>灰度迁移策略：dev → staging → prod；每个环境至少验证 1 周</td>
+  </tr>
+  <tr>
+    <td><span class="sev sev-s1">中</span></td>
+    <td>区域团队抵触新工具链</td>
+    <td>IaC / 监控采纳率低，投资浪费</td>
+    <td>每区域设立 Champion 角色；先选 1 个区域做标杆，再复制</td>
+  </tr>
+  <tr>
+    <td><span class="sev sev-s2">低</span></td>
+    <td>云厂商合同变更影响成本优化</td>
+    <td>FinOps 预期收益打折</td>
+    <td>与 3 家云厂商同时谈判，保留议价空间；建立成本对标机制</td>
+  </tr>
+</table>
+
+<div style="margin-top:1.2rem">
+<table>
+  <tr class="section-header disc"><td colspan="3">成功标准</td></tr>
+  <tr><th style="width:60px">序号</th><th style="width:240px">指标</th><th>目标值（W52）</th></tr>
+  <tr><td>1</td><td>跨区域网络延迟（P99）</td><td>&lt; 200ms（当前 &gt; 2000ms）</td></tr>
+  <tr><td>2</td><td>安全合规审计通过率</td><td>100%（全部区域、全部法规）</td></tr>
+  <tr><td>3</td><td>核心系统 RTO</td><td>&lt; 4h（当前 &gt; 24h）</td></tr>
+  <tr><td>4</td><td>IaC 覆盖率</td><td>&gt; 80%（当前 &lt; 15%）</td></tr>
+  <tr><td>5</td><td>云成本优化率</td><td>节省 25%+（相对当前月支出）</td></tr>
+  <tr><td>6</td><td>统一监控覆盖率</td><td>&gt; 90% 资源接入统一平台</td></tr>
+  <tr><td>7</td><td>MTTR</td><td>&lt; 15 min（当前 &gt; 45 min）</td></tr>
+  <tr><td>8</td><td>团队云原生认证率</td><td>&gt; 60% 核心成员持有云认证</td></tr>
+</table>
+</div>
+</div>
+
+<!-- ===== 10. Immediate Actions ===== -->
+<h2 id="sec-next">10. 即刻行动 — Day 1 启动事项</h2>
+<div class="card">
+<table>
+  <tr class="section-header exec"><td colspan="3">Day 1 行动清单</td></tr>
+  <tr><th style="width:40px">#</th><th style="width:260px">行动</th><th>责任人 / 产出</th></tr>
+  <tr><td>1</td><td>启动全球网络现状审计</td><td>网络团队 → 各区域网络拓扑图 + 带宽利用率数据</td></tr>
+  <tr><td>2</td><td>委托外部合规顾问启动差距扫描</td><td>安全合规团队 → 各国法规 checklist + 差距清单</td></tr>
+  <tr><td>3</td><td>组织 BIA 工作坊，评估核心系统 RTO/RPO</td><td>灾备团队 → BIA 评估报告</td></tr>
+  <tr><td>4</td><td>盘点所有手工配置的基础设施资源</td><td>运维团队 → IaC 迁移优先级清单</td></tr>
+  <tr><td>5</td><td>导出过去 6 个月全部云账单</td><td>FinOps → 成本热力图 + Top 10 浪费项</td></tr>
+  <tr><td>6</td><td>收集各区域现有监控工具与告警规则</td><td>SRE → 监控工具矩阵 + 重复/冗余识别</td></tr>
+  <tr><td>7</td><td>导出各云环境 IAM 策略与账号清单</td><td>安全团队 → 特权账号审计报告</td></tr>
+  <tr><td>8</td><td>收集 IoT 设备增长数据与容量趋势</td><td>平台团队 → 容量需求预测模型输入</td></tr>
+  <tr><td>9</td><td>发布团队技能评估问卷</td><td>HR + 技术管理 → 技能矩阵 + 培训需求</td></tr>
+  <tr><td>10</td><td>盘点各云厂商专有服务使用情况</td><td>架构团队 → 供应商依赖度热力图</td></tr>
+</table>
+</div>
+
+<!-- ===== Footer ===== -->
+<div class="footer">
+  远景能源 · 全球 IaaS 基础设施岗位能力与痛点加速提升计划 · 呈 CIO
+</div>
+
+<!-- ===== Scripts ===== -->
+<script src="gantt-data.js"></script>
+<script src="gantt-renderer.js"></script>
+<script src="gantt-version.js"></script>
+<script>
+/* Init Gantt */
+GanttRenderer.init(GANTT_PLAN_MD, 'gantt-envision');
+GanttVersion.createPanel('gantt-envision', 'gantt-envision', GANTT_PLAN_MD);
+
+/* Side Nav */
+(function(){
+  var btn=document.getElementById('snavBtn'),panel=document.getElementById('snavPanel'),bg=document.getElementById('snavBg');
+  function toggle(){var o=panel.classList.toggle('open');bg.classList.toggle('open',o);btn.classList.toggle('open',o)}
+  btn.addEventListener('click',toggle);
+  bg.addEventListener('click',toggle);
+  panel.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){panel.classList.remove('open');bg.classList.remove('open');btn.classList.remove('open')})});
+  /* Highlight current section */
+  var secs=[];
+  panel.querySelectorAll('a').forEach(function(a){var h=a.getAttribute('href');if(h&&h.startsWith('#')){var el=document.getElementById(h.slice(1));if(el)secs.push({a:a,el:el})}});
+  window.addEventListener('scroll',function(){
+    var st=window.scrollY+120;
+    var cur=null;
+    secs.forEach(function(s){if(s.el.offsetTop<=st)cur=s.a});
+    secs.forEach(function(s){s.a.classList.toggle('active',s.a===cur)});
+  },{passive:true});
+})();
+</script>
+
+</body>
+</html>
