@@ -6,8 +6,8 @@
 var GANTT_PLAN_MD = `
 ---
 id: gantt-envision
-weeks: 52
-cutover: W52
+weeks: 54
+cutover: W54
 description: 远景能源全球 IaaS 基础设施 10 大痛点加速提升计划 — 52 周（12 个月）并行推进，按严重等级排序。各痛点 Day 1 同时启动诊断，关键依赖以弧线标注。
 sort-note: 排序与严重等级一致（S0→S1→S2→S3）— 最紧急的在最上方，便于识别整体压缩空间和资源投入优先级。
 ---
